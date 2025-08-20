@@ -1,4 +1,0 @@
-❌ styles.csv の同期に失敗: [Errno 2] No such file or directory: 'ponisuke_templates/styles.csv'
-❌ custom_translate.csv の同期に失敗: [Errno 2] No such file or directory: 'ponisuke_templates/custom_translate.csv'
-❌ custom.yaml の同期に失敗: [Errno 2] No such file or directory: 'ponisuke_templates/custom.yaml'
-❌ wildcards 同期に失敗: Command '['rsync', '-avh', '--delete', 'ponisuke_templates/SD/wildcards/', '/Users/tawaramasahiro/Library/CloudStorage/GoogleDrive-grwfp543@gmail.com/マイドライブ/sd/stable-diffusion-webui/extensions/sd-dynamic-prompts/wildcards/']' returned non-zero exit status 23.
