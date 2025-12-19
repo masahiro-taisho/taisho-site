@@ -2,166 +2,95 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>タイショー | 個人サイト</title>
-  <meta name="description" content="タイショーの個人サイト。プロフィール、作品、ブログへのリンクなど。">
-  <meta property="og:title" content="タイショー | 個人サイト">
-  <meta property="og:description" content="プロフィール、作品、ブログへのリンク。">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="/og-image.jpg"><!-- 後で差し替え -->
-  <link rel="icon" href="/favicon.ico"><!-- 後で差し替え -->
-  <style>
-    :root{
-      --bg:#0b0f14; --card:#10151c; --text:#e7edf3; --muted:#a9b6c3; --accent:#6cc0ff; --accent2:#c6f36b;
-      --ring: rgba(108,192,255,.4);
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:linear-gradient(160deg,#0b0f14,#0e141c);color:var(--text);font:16px/1.7 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,Apple Color Emoji,Segoe UI Emoji}
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
-    header{position:sticky;top:0;z-index:10;background:rgba(11,15,20,.6);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid #1b2532}
-    .wrap{max-width:1000px;margin:auto;padding:0 16px}
-    .nav{display:flex;align-items:center;gap:16px;justify-content:space-between;height:64px}
-    .brand{font-weight:700;letter-spacing:.4px}
-    .menu{display:flex;gap:16px}
-    .btn{display:inline-block;border:1px solid #2b3a4c;padding:10px 14px;border-radius:12px;background:#0f141b}
-    .btn:hover{border-color:#3b4f69;box-shadow:0 0 0 4px var(--ring)}
-
-    .hero{padding:64px 0 32px}
-    .heroGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:24px}
-    .card{background:var(--card);border:1px solid #1b2532;border-radius:16px;padding:24px;box-shadow:0 1px 0 #17202b}
-    .badge{display:inline-block;font-size:12px;color:#0b0f14;background:linear-gradient(45deg,var(--accent),var(--accent2));padding:4px 10px;border-radius:999px;font-weight:700}
-    h1{margin:.4em 0 .2em;font-size:40px;line-height:1.15}
-    .muted{color:var(--muted)}
-    .hero img{width:100%;border-radius:14px;border:1px solid #1b2532}
-
-    section{padding:40px 0}
-    h2{font-size:24px;margin:0 0 12px}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .work{padding:16px;border-radius:14px;background:#0e131a;border:1px solid #1b2532}
-    .work h3{margin:6px 0 4px;font-size:16px}
-    .work p{margin:0;color:var(--muted);font-size:14px}
-
-    .about{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    ul{padding-left:18px;margin:0}
-
-    .contact form{display:grid;gap:12px}
-    input,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #223042;background:#0d1218;color:var(--text)}
-    input:focus,textarea:focus{outline:none;box-shadow:0 0 0 4px var(--ring);border-color:#34506e}
-    textarea{min-height:120px}
-
-    footer{padding:28px 0;border-top:1px solid #1b2532;color:var(--muted)}
-
-    @media (max-width:860px){
-      .heroGrid,.about{grid-template-columns:1fr}
-      .grid{grid-template-columns:1fr 1fr}
-    }
-    @media (max-width:520px){
-      .grid{grid-template-columns:1fr}
-      h1{font-size:32px}
-    }
-  </style>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Taisho / Home</title>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <header>
-    <div class="wrap nav">
-      <a class="brand" href="#top">タイショー</a>
-      <nav class="menu">
-        <a href="#works">作品</a>
-        <a href="#about">プロフィール</a>
-        <a href="youtube.html">YouTube</a>
-        <a href="movies.html">映画・ドラマ</a>
-        <a href="#contact" class="btn">連絡</a>
-      </nav>
+
+<header class="header">
+  <div class="inner">
+    <div class="brand">
+      <div class="name">TAISHO</div>
+      <div class="tag">ちょい悪 × 愛嬌</div>
     </div>
-  </header>
+    <nav class="nav">
+      <a class="active" href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="youtube.html">YouTube</a>
+      <a href="works.html">Works</a>
+      <a href="gear.html">Gear</a>
+    </nav>
+  </div>
+</header>
 
-  <main id="top" class="wrap">
-    <section class="hero">
-      <div class="heroGrid">
-        <div class="card">
-          <span class="badge">はじめてのHP</span>
-          <h1>個人サイト、今日から始めよう。</h1>
-          <p class="muted">VSCodeで編集 → ブラウザで確認 → できたら公開。まずはこの1枚から。あとでページを増やせばOK。</p>
-          <div style="display:flex;gap:10px;margin-top:8px">
-            <a class="btn" href="#works">作品を見る</a>
-            <a class="btn" href="#about">自己紹介</a>
-          </div>
-        </div>
-        <div class="card">
-          <!-- ここに自分のアイコン画像を置くと映えます（/images/icon.jpg など） -->
-          <img src="https://placehold.co/800x520/png" alt="プレビュー画像（差し替え推奨）">
-        </div>
+<main class="container">
+  <section class="hero">
+    <div class="kicker"><span class="dot"></span><span>公開用HP（随時更新）</span></div>
+    <h1>タイショーの、渋くてゆるいメモ帳。</h1>
+    <p class="lead">映画・アニメ・ガジェット・ソフト。好きなものを、短く、気持ちよくまとめる場所。</p>
+    <p class="sublead">“お、オシャレやん”って見えるけど、読み味はフレンドリー。そんなやつ。</p>
+  </section>
+
+  <section class="grid">
+    <article class="card">
+      <h2>Quick Intro</h2>
+      <p>兵庫の山側で暮らす、Mac好きの40代。硬派作品と、ちょいマニアな道具が好き。</p>
+      <div class="meta">
+        <span class="pill">Mac / Apple</span>
+        <span class="pill">映画 / アニメ</span>
+        <span class="pill">VSCode</span>
       </div>
-    </section>
+    </article>
 
-    <section id="works">
-      <h2>作品 / プロジェクト</h2>
-      <div class="grid">
-        <article class="work">
-          <h3>作品タイトルA</h3>
-          <p>スクショや画像へのリンク、GitHub、Civitai、Xなどへ誘導。</p>
-        </article>
-        <article class="work">
-          <h3>作品タイトルB</h3>
-          <p>趣味（AI画像・Blender・写真・DIY…）を自由に。</p>
-        </article>
-        <article class="work">
-          <h3>作品タイトルC</h3>
-          <p>ブログ記事やノートのリンクも◎</p>
-        </article>
+    <article class="card">
+      <h2>Now</h2>
+      <p>更新は気まぐれ。増えたら勝ち。減っても気にしない。継続より“良い瞬間”。</p>
+      <div class="meta">
+        <span class="pill">短評主義</span>
+        <span class="pill">積み上げ</span>
+        <span class="pill">深追いしない</span>
       </div>
-    </section>
+    </article>
+  </section>
 
-    <section id="about">
-      <h2>プロフィール</h2>
-      <div class="about">
-        <div class="card">
-          <p>ここに自己紹介。興味・スキル・好きな作品など。行数が多い場合は箇条書きが読みやすいです。</p>
-          <ul>
-            <li>趣味：AI画像生成 / ガンダム / ジョジョ など</li>
-            <li>環境：MacBook Air (M1) / VSCode</li>
-            <li>活動：ブログ / X / pixiv など</li>
-          </ul>
-        </div>
-        <div class="card">
-          <p class="muted">Tips: 後で <code>about.html</code> を作って詳しく書いてもOK。このトップは "名刺" と割り切ると迷いにくい。</p>
-          <p class="muted">色や丸み、余白は上の <code>:root</code> と CSS を触れば雰囲気を簡単に変えられます。</p>
+  <section class="section">
+    <h2>最近のピックアップ</h2>
+    <div class="list">
+      <div class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">YouTube：好きなチャンネル</p>
+          <p class="desc">3〜5個に絞って、理由は1行。迷わない運用が最強。</p>
+          <a class="link" href="youtube.html"><span>→</span> 見に行く</a>
         </div>
       </div>
-    </section>
 
-    <section id="contact" class="contact">
-      <h2>お問い合わせ</h2>
-      <div class="card">
-        <!-- 静的サイトなのでフォーム送信先はダミー。運用時は Google フォーム / Formspree / Netlify Forms などを利用 -->
-        <form onsubmit="event.preventDefault(); alert('メッセージありがとうございます！\n運用時は送信先を設定してください。');">
-          <label>
-            お名前
-            <input required placeholder="太郎">
-          </label>
-          <label>
-            メール
-            <input type="email" required placeholder="taro@example.com">
-          </label>
-          <label>
-            メッセージ
-            <textarea required placeholder="お問い合わせ内容…"></textarea>
-          </label>
-          <button class="btn" type="submit">送信（ダミー）</button>
-        </form>
+      <div class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">Works：好きな作品</p>
+          <p class="desc">映画・アニメ・TV。ベスト10方式で“更新が楽”にする。</p>
+          <a class="link" href="works.html"><span>→</span> 見に行く</a>
+        </div>
       </div>
-    </section>
-  </main>
 
-  <footer>
-    <div class="wrap">© <span id="y"></span> Taisho. All rights reserved.</div>
+      <div class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">Gear：おすすめガジェット/ソフト</p>
+          <p class="desc">買ってよかった理由を短く。道具は“語るとセンスが出る”。</p>
+          <a class="link" href="gear.html"><span>→</span> 見に行く</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div>© Taisho — built with HTML + CSS, hosted on GitHub Pages.</div>
+    <div class="small">最終更新：気分</div>
   </footer>
+</main>
 
-  <script>
-    // 今年の表示だけ自動化（ここは触らなくてOK）
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
