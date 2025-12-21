@@ -8,21 +8,21 @@
 </head>
 <body>
 
-<header class="header">
-  <div class="inner">
-    <div class="brand">
-      <div class="name">TAISHO</div>
-      <div class="tag">ちょい悪 × 愛嬌</div>
-    </div>
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a class="active" href="about.html">About</a>
-      <a href="youtube.html">YouTube</a>
-      <a href="works.html">Works</a>
-      <a href="gear.html">Gear</a>
-    </nav>
-  </div>
-</header>
+<div id="site-header"></div>
+<script>
+fetch("header.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("site-header").innerHTML = html;
+
+    const current = location.pathname.split("/").pop() || "index.html";
+    document.querySelectorAll("nav a").forEach(a=>{
+      if(a.dataset.page === current){
+        a.classList.add("active");
+      }
+    });
+  });
+</script>
 
 <main class="container">
   <section class="hero">
