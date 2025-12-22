@@ -5,73 +5,138 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Taisho / YouTube</title>
   <link rel="stylesheet" href="assets/style.css">
+  <style>
+    /* YouTube サムネ用（ページ専用の最小追加CSS） */
+    .yt-item{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+    }
+    .yt-thumb{
+      width:200px;
+      aspect-ratio:16/9;
+      object-fit:cover;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:#000;
+      flex-shrink:0;
+    }
+    @media (max-width:700px){
+      .yt-item{
+        flex-direction:column;
+      }
+      .yt-thumb{
+        width:100%;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header class="header">
-  <div class="inner">
-    <div class="brand">
-      <div class="name">TAISHO</div>
-      <div class="tag">ちょい悪 × 愛嬌</div>
-    </div>
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a class="active" href="youtube.html">YouTube</a>
-      <a href="works.html">Works</a>
-      <a href="gear.html">Gear</a>
-    </nav>
-  </div>
-</header>
+<div id="site-header"></div>
+
+<script>
+fetch("header.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("site-header").innerHTML = html;
+
+    const current = location.pathname.split("/").pop() || "index.html";
+    document.querySelectorAll("nav a").forEach(a=>{
+      if(a.dataset.page === current){
+        a.classList.add("active");
+      }
+    });
+  });
+</script>
 
 <main class="container">
   <section class="hero">
     <div class="kicker"><span class="dot"></span><span>YouTube</span></div>
     <h1>好きなYouTubeチャンネル</h1>
     <p class="lead">多くしない。3〜5個で“芯”が出る。</p>
-    <p class="sublead">理由は1行。刺さるポイントだけ残す。</p>
+    <p class="sublead">サムネ＋短評。視覚で分かる紹介。</p>
   </section>
 
   <section class="section">
     <h2>Channels</h2>
+
     <div class="list">
-      <div class="item">
-  <div class="badge"></div>
-  <div>
-    <p class="title">しましまリス / 勇者シリーズの沼案内</p>
-    <p class="desc">ド○クエ風ギャグで油断させて、急に刺してくるシリアスと伏線回収がえげつない。“憎めない連中”が暴れてるのに、気づけば物語に捕まる。</p>
-    <a class="link" href="https://www.youtube.com/@shimashimarisu" target="_blank" rel="noopener"><span>→</span> チャンネルを見る</a>
-  </div>
-</div>
 
-<div class="item">
-  <div class="badge"></div>
-  <div>
-    <p class="title">limo / 富野信者のための狂気の資料室</p>
-    <p class="desc">「18歳JK？」の皮をかぶったガチ勢。国会図書館で資料集め、テム・レイ2時間、ザンスカール単身旅行…富野愛が暴走して“作品への理解”が一段深くなる。</p>
-    <a class="link" href="https://www.youtube.com/@limo_hrih" target="_blank" rel="noopener"><span>→</span> チャンネルを見る</a>
-  </div>
-</div>
+      <!-- しましまリス -->
+      <div class="item yt-item">
+        <!-- ▼▼▼ 動画IDを差し替える ▼▼▼ -->
+        <img class="yt-thumb"
+          src="https://img.youtube.com/vi/VIDEO_ID_SHIMASHIMA/hqdefault.jpg"
+          alt="">
+        <div>
+          <p class="title">しましまリス / 勇者シリーズの沼案内</p>
+          <p class="desc">
+            ド○クエ風ギャグで油断させて、突然刺してくるシリアスと伏線回収。
+            憎めないキャラ達に笑ってたら、気づけば物語に捕まっている。
+          </p>
+          <a class="link" href="https://www.youtube.com/@shimashimarisu" target="_blank" rel="noopener">
+            <span>→</span> チャンネルを見る
+          </a>
+        </div>
+      </div>
 
-<div class="item">
-  <div class="badge"></div>
-  <div>
-    <p class="title">さらば青春の光 / 週末の楽しみを確定させるやつ</p>
-    <p class="desc">尖った笑いと世相切りが同居してて、土曜の夜にちょうどいい温度。ニュースに拾われるのも納得の“攻めた企画”が安定供給される。</p>
-    <a class="link" href="https://www.youtube.com/@sarabaOYC" target="_blank" rel="noopener"><span>→</span> チャンネルを見る</a>
-  </div>
-</div>
+      <!-- limo -->
+      <div class="item yt-item">
+        <img class="yt-thumb"
+          src="https://img.youtube.com/vi/VIDEO_ID_LIMO/hqdefault.jpg"
+          alt="">
+        <div>
+          <p class="title">limo / 富野信者のための狂気の資料室</p>
+          <p class="desc">
+            国会図書館で資料集め、テム・レイ2時間、ザンスカール単身旅行。
+            ネタに見せかけて中身はガチ。富野作品の理解が一段深くなる。
+          </p>
+          <a class="link" href="https://www.youtube.com/@limo_hrih" target="_blank" rel="noopener">
+            <span>→</span> チャンネルを見る
+          </a>
+        </div>
+      </div>
 
-<div class="item">
-  <div class="badge"></div>
-  <div>
-    <p class="title">くっきー！＆ザコシ（しゅしゅごく）/ コンプラと殴り合う月曜</p>
-    <p class="desc">危険なタッグが収益を投げ捨てて、ギリギリアウトを通す。月曜夜に頭を空っぽにする用途としては、ほぼ最適解。</p>
-    <a class="link" href="https://www.youtube.com/@shushugoku" target="_blank" rel="noopener"><span>→</span> チャンネルを見る</a>
-  </div>
-</div>
+      <!-- さらば青春の光 -->
+      <div class="item yt-item">
+        <img class="yt-thumb"
+          src="https://img.youtube.com/vi/VIDEO_ID_SARABA/hqdefault.jpg"
+          alt="">
+        <div>
+          <p class="title">さらば青春の光 / 週末の楽しみを確定させるやつ</p>
+          <p class="desc">
+            尖った笑いと世相切りが同居。
+            ニュースに拾われるのも納得の企画力で、土曜夜の安定剤。
+          </p>
+          <a class="link" href="https://www.youtube.com/@sarabaOYC" target="_blank" rel="noopener">
+            <span>→</span> チャンネルを見る
+          </a>
+        </div>
+      </div>
 
-    <p class="small" style="margin-top:10px;">※リンクは自分の好きなチャンネルURLに差し替え。</p>
+      <!-- しゅしゅごく -->
+      <div class="item yt-item">
+        <img class="yt-thumb"
+          src="https://img.youtube.com/vi/VIDEO_ID_SHUSHUGOKU/hqdefault.jpg"
+          alt="">
+        <div>
+          <p class="title">くっきー！＆ザコシ（しゅしゅごく）</p>
+          <p class="desc">
+            コンプラと殴り合う危険なタッグ。
+            収益度外視、月曜夜に脳を空にするための最終兵器。
+          </p>
+          <a class="link" href="https://www.youtube.com/@shushugoku" target="_blank" rel="noopener">
+            <span>→</span> チャンネルを見る
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="small" style="margin-top:12px;">
+      ※ サムネイルは代表動画のもの。動画IDを差し替えるだけで変更できます。
+    </p>
   </section>
 
   <footer class="footer">
