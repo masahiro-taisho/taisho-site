@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Taisho Blog / タイトルを書く</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<script>
+fetch("../header.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("site-header").innerHTML = html;
+  });
+</script>
+
+<main class="container">
+
+  <article class="section">
+    <p class="small">2025-01-xx / YouTube</p>
+
+    <h1>ここにブログタイトルを書く</h1>
+
+    <p class="lead">
+      ここは「導入」。おすすめまとめページに表示されても違和感のない、
+      最初の2〜3行を書く場所。
+    </p>
+
+    <hr style="border:0;border-top:1px solid var(--line);margin:24px 0;">
+
+    <p>
+      ここから本文。
+      思いついたまま書いてOK。
+      途中で止めてもいいし、後から追記してもいい。
+    </p>
+
+    <p>
+      「この回はヤバかった」「なぜ刺さったか」「他と何が違うか」など、
+      好きな角度で語る。
+    </p>
+
+    <h2>特に良かったポイント</h2>
+    <ul>
+      <li>ポイント1：〇〇の構成</li>
+      <li>ポイント2：〇〇の語り</li>
+      <li>ポイント3：〇〇の狂気</li>
+    </ul>
+
+    <h2>関連リンク</h2>
+    <ul>
+      <li>
+        <a href="https://www.youtube.com/" target="_blank" rel="noopener">
+          YouTube：該当チャンネル／動画
+        </a>
+      </li>
+      <li>
+        <a href="https://www.amazon.co.jp/" target="_blank" rel="noopener">
+          Amazon：関連商品
+        </a>
+      </li>
+      <li>
+        <a href="https://example.com" target="_blank" rel="noopener">
+          公式サイト
+        </a>
+      </li>
+    </ul>
+
+    <hr style="border:0;border-top:1px solid var(--line);margin:28px 0;">
+
+    <p class="small">
+      カテゴリ：YouTube / Works / Gear / 雑記<br>
+      タグ：ガンダム, 富野, 狂気
+    </p>
+  </article>
+
+  <footer class="footer">
+    <div>
+      <a href="../blog/index.html">← ブログ一覧へ戻る</a>
+    </div>
+    <div class="small">
+      書きたいときに書く。それでいい。
+    </div>
+  </footer>
+
+</main>
+
+</body>
+</html>
