@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Taisho / 音楽</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+<script>
+fetch("/taisho-site/header.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("site-header").innerHTML = html;
+  });
+</script>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>音楽</h1>
+    <p class="lead">
+      流行より、身体に残ったもの。
+    </p>
+    <p class="sublead">
+      繰り返し聴いてきた音だけを置いている。
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="list">
+
+      <article class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">[The Prodigy](chatgpt://generic-entity?number=0)</p>
+          <p class="desc">
+            攻撃的で粗暴、それでいて計算され尽くした電子音楽。
+            テンションを上げたい日は、だいたいここに戻ってくる。
+          </p>
+          <a class="link" href="https://theprodigy.com/" target="_blank" rel="noopener">公式サイト →</a><br>
+          <a class="link" href="https://www.youtube.com/@TheProdigy" target="_blank" rel="noopener">YouTube公式 →</a>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">[Nujabes](chatgpt://generic-entity?number=1)</p>
+          <p class="desc">
+            静かに染み込むようなビート。
+            落ち着きたい時、思考を整えたい時に聴く音。
+          </p>
+          <a class="link" href="https://hydeout.net/" target="_blank" rel="noopener">公式サイト →</a><br>
+          <a class="link" href="https://www.youtube.com/@Nujabes" target="_blank" rel="noopener">YouTube公式 →</a>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">[椎名林檎](chatgpt://generic-entity?number=2)</p>
+          <p class="desc">
+            言葉、音、佇まい。
+            日本語ポップスの到達点の一つだと思っている。
+          </p>
+          <a class="link" href="https://www.kronekodow.com/" target="_blank" rel="noopener">公式サイト →</a><br>
+          <a class="link" href="https://www.youtube.com/@sheenaringo" target="_blank" rel="noopener">YouTube公式 →</a>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">[電気グルーヴ](chatgpt://generic-entity?number=3)</p>
+          <p class="desc">
+            不真面目と実験精神の両立。
+            真顔でふざけ続ける姿勢が、長く刺さっている。
+          </p>
+          <a class="link" href="https://www.denkigroove.com/" target="_blank" rel="noopener">公式サイト →</a><br>
+          <a class="link" href="https://www.youtube.com/@denkigroove" target="_blank" rel="noopener">YouTube公式 →</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+</main>
+
+<div id="site-footer"></div>
+<script>
+fetch("/taisho-site/footer.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("site-footer").innerHTML = html;
+  });
+</script>
+
+</body>
+</html>
