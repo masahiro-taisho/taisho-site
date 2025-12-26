@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Taisho Blog</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+<script>
+fetch("../header.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("site-header").innerHTML = html;
+  });
+</script>
+
+<main class="container">
+
+  <section class="hero">
+    <div class="kicker"><span class="dot"></span><span>Blog</span></div>
+    <h1>ブログ</h1>
+    <p class="lead">思ったこと・使ったもの・残しておきたい話。</p>
+    <p class="sublead">結論より、途中経過。</p>
+  </section>
+
+  <section class="section">
+    <h2>記事一覧</h2>
+
+    <div class="list">
+
+      <!-- ▼ 記事カード（1件） -->
+      <article class="item">
+        <p class="small">2025-01-15 / Gear</p>
+        <h3>
+          <a href="2025-01-15-macbook-air-m1.html">
+            MacBook Air（M1, 2020）を、今も使い続けている理由
+          </a>
+        </h3>
+        <p class="desc">
+          スペック表より、「裏切らないこと」。
+          毎日の作業で静かに効いてくる一台。
+        </p>
+        <a class="link" href="2025-01-15-macbook-air-m1.html">
+          続きを読む →
+        </a>
+      </article>
+
+      <!-- ▼ 次の記事はこのブロックをコピペ -->
+      <!--
+      <article class="item">
+        <p class="small">YYYY-MM-DD / Category</p>
+        <h3><a href="YYYY-MM-DD-sample.html">記事タイトル</a></h3>
+        <p class="desc">記事冒頭の2〜3行</p>
+        <a class="link" href="YYYY-MM-DD-sample.html">続きを読む →</a>
+      </article>
+      -->
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div>
+      <a href="../index.html">← ホームへ戻る</a>
+    </div>
+    <div class="small">
+      書くことで、整理する。
+    </div>
+  </footer>
+
+</main>
+
+</body>
+</html>
