@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Taisho / 【作品名】</title>
+  <link rel="stylesheet" href="/taisho-site/assets/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+<script>
+fetch("/taisho-site/header.html")
+  .then(res => res.text())
+  .then(html => { document.getElementById("site-header").innerHTML = html; });
+</script>
+
+<main class="container">
+
+  <section class="hero">
+    <div class="kicker"><span class="dot"></span><span>日記 / 映画</span></div>
+    <h1>【作品名】</h1>
+    <p class="lead">【一文キャッチ：渋く短く】</p>
+    <p class="small">公開: YYYY-MM-DD / カテゴリ: 映画 / タグ: 【任意】</p>
+  </section>
+
+  <section class="section">
+    <h2>ざっくり</h2>
+    <div class="list">
+      <div class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">タイショー的ひとこと</p>
+          <p class="desc">【短評：2〜3行】</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">おすすめしたい人</p>
+          <p class="desc">【刺さる人のタイプ】</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>好きポイント</h2>
+    <div class="list">
+      <div class="item"><div class="badge"></div><div><p class="title">1.</p><p class="desc">【ポイント】</p></div></div>
+      <div class="item"><div class="badge"></div><div><p class="title">2.</p><p class="desc">【ポイント】</p></div></div>
+      <div class="item"><div class="badge"></div><div><p class="title">3.</p><p class="desc">【ポイント】</p></div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>ネタバレについて</h2>
+    <p class="small">この下は軽く触れる。未視聴ならここで離脱してOK。</p>
+  </section>
+
+  <section class="section">
+    <h2>もう一歩（軽ネタバレ）</h2>
+    <div class="list">
+      <div class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">【見どころ】</p>
+          <p class="desc">【軽く触れる】</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>観る・買う（公式リンクのみ）</h2>
+    <p class="small">※Amazonアソシエイトリンクを含みます。</p>
+    <div class="list">
+      <div class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">Amazon（DVD / Blu-ray）</p>
+          <p class="desc">【商品ページURLを貼る】</p>
+          <a class="link" href="【AmazonアソシエイトURL】" target="_blank" rel="noopener">Amazonで見る →</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">Prime Video</p>
+          <p class="desc">【配信ページURLを貼る（なければ消してOK）】</p>
+          <a class="link" href="【Primeの作品URL】" target="_blank" rel="noopener">Prime Video →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <a class="link" href="/taisho-site/blog/index.html"><span>→</span> 日記一覧へ戻る</a>
+  </section>
+
+</main>
+
+<div id="site-footer"></div>
+<script>
+fetch("/taisho-site/footer.html")
+  .then(res => res.text())
+  .then(html => { document.getElementById("site-footer").innerHTML = html; });
+</script>
+
+</body>
+</html>
