@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Taisho / Works</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+<script>
+fetch("/taisho-site/header.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("site-header").innerHTML = html;
+
+    const current = location.pathname.split("/").pop() || "index.html";
+    document.querySelectorAll("nav a").forEach(a=>{
+      if(a.dataset.page === current){
+        a.classList.add("active");
+      }
+    });
+  });
+</script>
+
+<main class="container">
+  <section class="hero">
+    <div class="kicker"><span class="dot"></span><span>Works</span></div>
+    <h1>好きな作品</h1>
+    <p class="lead">映画・アニメ・TV。理屈じゃなく“刺さったやつ”を置く。</p>
+    <p class="sublead">長文レビューはしない。短評でいい。むしろ短評が渋い。</p>
+  </section>
+
+  <section class="section">
+    <h2>Movies</h2>
+<div class="item"><div class="badge"></div><div>
+  <p class="title">ゴッドファーザー（シリーズ）</p>
+  <p class="desc">“家族”という美名で人間が壊れていく、静かな権力の物語。映像も沈黙も全部が重いのに、なぜか何度でも観れてしまう。</p>
+</div></div>
+
+<div class="item"><div class="badge"></div><div>
+  <p class="title">ニュー・シネマ・パラダイス</p>
+  <p class="desc">映画好きの心臓を、正面から優しく殴ってくる。郷愁と別れと、人生の取り返しのつかなさが、最後に全部まとめて押し寄せる。</p>
+</div></div>
+
+<div class="item"><div class="badge"></div><div>
+  <p class="title">北野武作品</p>
+  <p class="desc">会話が少ないのに感情が漏れる。“静かなる狂気”が画面の隅にずっと居座って、ふとした瞬間に撃ち抜かれる。</p>
+</div></div>
+
+<div class="item"><div class="badge"></div><div>
+  <p class="title">七人の侍</p>
+  <p class="desc">古いとか長いとか関係ない、物語の骨格そのもの。人が集まり、ぶつかり、腹をくくる瞬間が全部カッコいい。</p>
+</div></div>
+
+<div class="item"><div class="badge"></div><div>
+  <p class="title">12人の怒れる男</p>
+  <p class="desc">密室の会話劇なのに、息が詰まるほど熱い。“多数決の正しさ”が崩れていく過程が、今観ても鋭すぎる。</p>
+</div></div>
+
+<div class="item"><div class="badge"></div><div>
+  <p class="title">LEON</p>
+  <p class="desc">不器用な優しさが刺さるやつ。暴力と純粋さが同居してて、観終わったあとに妙な静けさが残る。</p>
+</div></div>
+
+<div class="item"><div class="badge"></div><div>
+  <p class="title">ティコ・ムーン</p>
+  <p class="desc">説明しすぎず、余白で語るタイプの作品。独特の空気とノスタルジーが、夜に観ると妙に効く。</p>
+</div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Anime / TV</h2>
+    <div class="item"><div class="badge"></div><div>
+  <p class="title">機動警察パトレイバー 2 the Movie</p>
+  <p class="desc">“平和”の顔をした不穏が、じわじわ現実に侵食してくる。政治・軍事・日常が地続きだと気づいた瞬間に、背筋が冷える。</p>
+</div></div>
+
+<div class="item"><div class="badge"></div><div>
+  <p class="title">スタートレック（シリーズ）</p>
+  <p class="desc">未来の話なのに、結局は人間の話。理想と現実の折り合いを、知性とユーモアで踏ん張る感じが好き。</p>
+</div></div>
+
+<div class="item"><div class="badge"></div><div>
+  <p class="title">伊集院光のてれび／ばらえてぃー（シリーズ）</p>
+  <p class="desc">言葉の精度と観察眼で笑わせる、“安心して浴びれる毒”。テンポが良いのに、妙に余韻も残るのがズルい。</p>
+</div></div>
+    </div>
+  </section>
+
+</main>
+
+<div id="site-footer"></div>
+<script>
+fetch("/taisho-site/footer.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("site-footer").innerHTML = html;
+  });
+</script>
+
+</body>
+</html>

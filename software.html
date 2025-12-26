@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Taisho / Gear</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+<script>
+fetch("/taisho-site/header.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("site-header").innerHTML = html;
+
+    const current = location.pathname.split("/").pop() || "index.html";
+    document.querySelectorAll("nav a").forEach(a=>{
+      if(a.dataset.page === current){
+        a.classList.add("active");
+      }
+    });
+  });
+</script>
+
+<main class="container">
+  <section class="hero">
+    <div class="kicker"><span class="dot"></span><span>Gear</span></div>
+    <h1>おすすめガジェット / ソフト</h1>
+    <p class="lead">買ってよかった理由を、短く・実用的に。</p>
+    <p class="sublead">“誰に効くか”が分かる書き方にすると、オシャレ感が出る。</p>
+  </section>
+
+  <section class="grid">
+    <article class="card">
+      <h2>Mac / Apple</h2>
+      <p>ハードは結局“体験”。困りごとが減る道具だけ残す。</p>
+      <div class="meta">
+        <span class="pill">作業効率</span>
+        <span class="pill">安定</span>
+        <span class="pill">気持ちよさ</span>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Software</h2>
+      <p>設定で勝つ。ショートカットと環境整備が“イケおじ”を作る。</p>
+      <div class="meta">
+        <span class="pill">VSCode</span>
+        <span class="pill">ワークフロー</span>
+        <span class="pill">時短</span>
+      </div>
+    </article>
+  </section>
+
+  <section class="section">
+    <h2>My picks</h2>
+    <div class="list">
+
+      <div class="item"><div class="badge"></div><div>
+        <p class="title">MacBook Air M1</p>
+        <p class="desc">軽い・熱くなりにくい・電池が強い。派手さはないけど、毎日“裏切らない道具”として完成度が高い。</p>
+        <p class="small">向いてる人：移動しながら作業したい／静音・安定が最優先</p>
+      </div></div>
+
+      <div class="item"><div class="badge"></div><div>
+        <p class="title">iPhone / iPad / Apple Watch（Apple連携）</p>
+        <p class="desc">単体性能より“連携で勝つ”。通知・メモ・作業の受け渡しが自然に繋がるのが、地味に生活を救う。</p>
+        <p class="small">向いてる人：考える前に手が動く環境が欲しい／雑務を減らしたい</p>
+      </div></div>
+
+      <div class="item"><div class="badge"></div><div>
+        <p class="title">Anker ドッキングステーション</p>
+        <p class="desc">机に帰ってきた瞬間、配線のストレスが消える。拡張は男のロマン…じゃなくて、作業効率の保険。</p>
+        <p class="small">向いてる人：デスク常設したい／抜き差し地獄を終わらせたい</p>
+      </div></div>
+
+      <div class="item"><div class="badge"></div><div>
+        <p class="title">ウルトラワイドモニター 34インチ</p>
+        <p class="desc">“視界の広さ”は正義。ブラウザ・エディタ・資料を並べて、頭の中の切り替え回数を減らせる。</p>
+        <p class="small">向いてる人：調べ物しながら作業する／ウィンドウ整理が苦手</p>
+      </div></div>
+
+      <div class="item"><div class="badge"></div><div>
+        <p class="title">自作マウント</p>
+        <p class="desc">既製品の正解じゃなく、“自分の正解”に寄せるやつ。道具を自分仕様にすると、作業のテンションが上がる。</p>
+        <p class="small">向いてる人：環境を育てたい／ちょいDIYが苦じゃない</p>
+      </div></div>
+
+      <div class="item"><div class="badge"></div><div>
+        <p class="title">VSCode</p>
+        <p class="desc">軽さと拡張性で、結局ここに戻る。設定を詰めるほど“手に馴染む相棒”になる。</p>
+        <p class="small">向いてる人：HTML/Markdown/Pythonを触る／作業を型にしたい</p>
+      </div></div>
+
+      <div class="item"><div class="badge"></div><div>
+        <p class="title">DeepL</p>
+        <p class="desc">翻訳の精度が“調べ物の速度”に直結する。読む量が増えるほど恩恵がデカい。</p>
+        <p class="small">向いてる人：英語資料を読む／技術系の情報収集をする</p>
+      </div></div>
+
+      <div class="item"><div class="badge"></div><div>
+        <p class="title">ChatGPT</p>
+        <p class="desc">アイデア出しと、下書きの初速を爆上げする。使い方次第で“相棒”にも“道具箱”にもなる。</p>
+        <p class="small">向いてる人：試行錯誤の回数を増やしたい／文章・コードの叩き台が欲しい</p>
+      </div></div>
+
+    </div>
+  </section>
+
+</main>
+
+<div id="site-footer"></div>
+<script>
+fetch("/taisho-site/footer.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("site-footer").innerHTML = html;
+  });
+</script>
+
+</body>
+</html>
