@@ -93,16 +93,16 @@ fetch("/taisho-site/header.html")
 
   </article>
 
-  <footer class="footer">
-    <div>
-      <a href="../blog/index.html">← ブログ一覧へ戻る</a>
-    </div>
-    <div class="small">
-      道具は、使い続けてから評価したい。
-    </div>
-  </footer>
-
 </main>
+
+<div id="site-footer"></div>
+<script>
+fetch("/taisho-site/footer.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("site-footer").innerHTML = html;
+  });
+</script>
 
 </body>
 </html>
