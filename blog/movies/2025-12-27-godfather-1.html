@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Taisho / ゴッドファーザー（初代）</title>
+  <link rel="stylesheet" href="/taisho-site/assets/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+<script>
+fetch("/taisho-site/header.html")
+  .then(res => res.text())
+  .then(html => { document.getElementById("site-header").innerHTML = html; });
+</script>
+
+<main class="container">
+
+  <section class="hero">
+    <div class="kicker"><span class="dot"></span><span>日記 / 映画</span></div>
+    <h1>ゴッドファーザー（初代）</h1>
+    <p class="lead">家族、権力、沈黙。映画という器で「人間の業」を見せつけてくる一本。</p>
+    <p class="small">公開: 2025-12-27 / カテゴリ: 映画 / タグ: マフィア,家族,権力</p>
+  </section>
+
+  <section class="section">
+    <h2>ざっくり</h2>
+    <div class="list">
+      <div class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">タイショー的ひとこと</p>
+          <p class="desc">「名作」って言葉が追いつかない。静かに人を追い詰める“重み”がある。</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">おすすめしたい人</p>
+          <p class="desc">派手さより“圧”が欲しい人。人間関係の機微、空気の重さ、倫理の崩壊が好きな人。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>好きポイント</h2>
+    <div class="list">
+      <div class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">1. 「静かさ」が暴力より怖い</p>
+          <p class="desc">声を荒げないのに、空気が支配される。会話の“間”が凶器になってる。</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">2. 家族の物語であり、転落の物語</p>
+          <p class="desc">正しさが残ってるうちに、もう引き返せない場所まで進んでいくのがエグい。</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">3. “式典”と“裏”が同時に進む構成</p>
+          <p class="desc">表の祝福と裏の現実が交差する。映画の構造そのものがコルレオーネ家みたいで痺れる。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>ネタバレについて</h2>
+    <p class="small">この下は軽く触れる。未視聴ならここで離脱してOK。</p>
+  </section>
+
+  <section class="section">
+    <h2>もう一歩（軽ネタバレ）</h2>
+    <div class="list">
+      <div class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">「善人のまま終われない」感じが最高に苦い</p>
+          <p class="desc">“守るため”のはずが、気づいたら別物に変質してる。そこが怖くて、でも目が離せない。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>観る・買う（公式リンクのみ）</h2>
+    <p class="small">※Amazonアソシエイトリンクを含みます。</p>
+    <div class="list">
+      <div class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">Amazon（DVD / Blu-ray）</p>
+          <p class="desc">商品ページを貼る（テキストリンクだけでOK。画像はAmazon公式の方法のみ）</p>
+          <a class="link" href="https://www.amazon.co.jp/?tag=masahirotaish-22" target="_blank" rel="noopener">Amazonで探す →</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">Prime Video</p>
+          <p class="desc">配信がある時だけリンクを置く運用でOK（無ければ空欄でOK）</p>
+          <a class="link" href="https://www.amazon.co.jp/primevideo?tag=masahirotaish-22" target="_blank" rel="noopener">Prime Video →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <a class="link" href="/taisho-site/blog/index.html"><span>→</span> 日記一覧へ戻る</a>
+  </section>
+
+</main>
+
+<div id="site-footer"></div>
+<script>
+fetch("/taisho-site/footer.html")
+  .then(res => res.text())
+  .then(html => { document.getElementById("site-footer").innerHTML = html; });
+</script>
+
+</body>
+</html>
