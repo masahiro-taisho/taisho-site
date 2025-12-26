@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Taisho / Home</title>
+  <title>Taisho / トップ</title>
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -17,7 +17,8 @@ fetch("header.html")
 
     const current = location.pathname.split("/").pop() || "index.html";
     document.querySelectorAll("nav a").forEach(a=>{
-      if(a.dataset.page === current){
+      const dp = a.dataset.page || "";
+      if(dp === current || (dp === "blog" && location.pathname.includes("/blog/"))){
         a.classList.add("active");
       }
     });
@@ -25,43 +26,75 @@ fetch("header.html")
 </script>
 
 <main class="container">
+
   <section class="hero">
-    <div class="kicker"><span class="dot"></span><span>公開用HP（随時更新）</span></div>
-    <h1>タイショーの、渋くてゆるいメモ帳。</h1>
-    <p class="lead">映画・アニメ・ガジェット・ソフト。好きなものを、短く、気持ちよくまとめる場所。</p>
-    <p class="sublead">“お、オシャレやん”って見えるけど、読み味はフレンドリー。そんなやつ。</p>
+    <div class="kicker"><span class="dot"></span><span>タイショーが愛すべきモノたち</span></div>
+    <h1>渋くて、ゆるい。好きなものの置き場。</h1>
+    <p class="lead">YouTube、映像作品、小説・漫画、ガジェット、ソフト。短く、気持ちよくまとめる。</p>
+    <p class="sublead">“お、オシャレやん”って見えるけど、中身は等身大。</p>
   </section>
 
   <section class="grid">
     <article class="card">
-      <h2>Quick Intro</h2>
-      <p>兵庫の山側で暮らす、Mac好きの40代。硬派作品と、ちょいマニアな道具が好き。</p>
+      <h2>自己紹介（ざっくり）</h2>
+      <p>兵庫の山側で暮らす、Mac好きの40代。硬派な作品と、ちょいマニアな道具が好き。</p>
       <div class="meta">
         <span class="pill">Mac / Apple</span>
         <span class="pill">映画 / アニメ</span>
-        <span class="pill">VSCode</span>
+        <span class="pill">道具</span>
       </div>
+      <a class="link" href="about.html"><span>→</span> 自己紹介へ</a>
     </article>
 
     <article class="card">
-      <h2>Now</h2>
-      <p>更新は気まぐれ。増えたら勝ち。減っても気にしない。継続より“良い瞬間”。</p>
+      <h2>このサイトの方針</h2>
+      <p>更新は気まぐれ。増えたら勝ち。深追いしない。だけど“刺さったもの”は残す。</p>
       <div class="meta">
         <span class="pill">短評主義</span>
+        <span class="pill">試行錯誤</span>
         <span class="pill">積み上げ</span>
-        <span class="pill">深追いしない</span>
       </div>
+      <a class="link" href="blog/index.html"><span>→</span> 日記（一覧）へ</a>
     </article>
   </section>
 
   <section class="section">
-    <h2>最近のピックアップ</h2>
+    <h2>更新</h2>
     <div class="list">
+      <!-- ▼ ここを更新するだけで「最終更新」が自然に運用できる -->
       <div class="item">
         <div class="badge"></div>
         <div>
-          <p class="title">YouTube：好きなチャンネル</p>
-          <p class="desc">3〜5個に絞って、理由は1行。迷わない運用が最強。</p>
+          <p class="title">日記：ガジェット（MacBook Air M1）</p>
+          <p class="desc">「裏切らない道具」って結局こういうやつ。体験ベースで短く。</p>
+          <a class="link" href="blog/index.html"><span>→</span> 日記を見る</a>
+        </div>
+      </div>
+
+      <!-- 追記例（必要なら使う）
+      <div class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">（追記）映画／TV／映像作品：〜</p>
+          <p class="desc">追記した内容を1行で。</p>
+          <a class="link" href="movies.html"><span>→</span> 見に行く</a>
+        </div>
+      </div>
+      -->
+    </div>
+
+    <p class="small">最終更新：2025-12-27</p>
+  </section>
+
+  <section class="section">
+    <h2>入口（各ページ）</h2>
+    <div class="list">
+
+      <div class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">YouTube</p>
+          <p class="desc">3〜5チャンネルに絞って、理由は1行。迷わない運用が最強。</p>
           <a class="link" href="youtube.html"><span>→</span> 見に行く</a>
         </div>
       </div>
@@ -69,28 +102,61 @@ fetch("header.html")
       <div class="item">
         <div class="badge"></div>
         <div>
-          <p class="title">Works：好きな作品</p>
-          <p class="desc">映画・アニメ・TV。ベスト10方式で“更新が楽”にする。</p>
-          <a class="link" href="works.html"><span>→</span> 見に行く</a>
+          <p class="title">映画／TV／映像作品</p>
+          <p class="desc">刺さった作品だけ。短評で残す。</p>
+          <a class="link" href="movies.html"><span>→</span> 見に行く</a>
         </div>
       </div>
 
       <div class="item">
         <div class="badge"></div>
         <div>
-          <p class="title">Gear：おすすめガジェット/ソフト</p>
-          <p class="desc">買ってよかった理由を短く。道具は“語るとセンスが出る”。</p>
-          <a class="link" href="gear.html"><span>→</span> 見に行く</a>
+          <p class="title">小説／漫画</p>
+          <p class="desc">読み返す価値のあるやつだけ置く。</p>
+          <a class="link" href="books.html"><span>→</span> 見に行く</a>
         </div>
       </div>
+
+      <div class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">ガジェット</p>
+          <p class="desc">Amazonは補助。主役は「タイショーはこう使ってる」。</p>
+          <a class="link" href="gadget.html"><span>→</span> 見に行く</a>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">ソフト</p>
+          <p class="desc">VSCode / DeepL / ChatGPT など、使ってる理由を短く。</p>
+          <a class="link" href="software.html"><span>→</span> 見に行く</a>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="badge"></div>
+        <div>
+          <p class="title">日記</p>
+          <p class="desc">詳しい話は全部ここ。記事が増えるほどサイトが強くなる。</p>
+          <a class="link" href="blog/index.html"><span>→</span> 見に行く</a>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <footer class="footer">
-    <div>© Taisho — built with HTML + CSS, hosted on GitHub Pages.</div>
-    <div class="small">最終更新：気分</div>
-  </footer>
 </main>
+
+<div id="site-footer"></div>
+<script>
+fetch("footer.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("site-footer").innerHTML = html;
+  });
+</script>
 
 </body>
 </html>
