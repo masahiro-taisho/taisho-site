@@ -10,7 +10,7 @@
 
 <div id="site-header"></div>
 <script>
-fetch("header.html")
+fetch("/taisho-site/header.html")
   .then(res => res.text())
   .then(html => {
     document.getElementById("site-header").innerHTML = html;
@@ -90,11 +90,16 @@ fetch("header.html")
     </div>
   </section>
 
-  <footer class="footer">
-    <div>© Taisho</div>
-    <div class="small">“好き”の棚卸しは、自己紹介より強い。</div>
-  </footer>
 </main>
+
+<div id="site-footer"></div>
+<script>
+fetch("/taisho-site/footer.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("site-footer").innerHTML = html;
+  });
+</script>
 
 </body>
 </html>
