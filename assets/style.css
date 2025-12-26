@@ -267,7 +267,7 @@ h1{
 .footer-links img{
   width:20px;
   height:20px;
-  opacity:.55;
+  opacity:.7;          /* ← 少しだけ上げる */
   transition:opacity .2s ease;
 }
 .footer-links a:hover img{opacity:1;}
