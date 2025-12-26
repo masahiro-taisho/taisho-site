@@ -10,7 +10,7 @@
 
 <div id="site-header"></div>
 <script>
-fetch("../header.html")
+fetch("/taisho-site/header.html")
   .then(res => res.text())
   .then(html => {
     document.getElementById("site-header").innerHTML = html;

@@ -11,7 +11,7 @@
 <div id="site-header"></div>
 
 <script>
-fetch("../header.html")
+fetch("/taisho-site/header.html")
   .then(res => res.text())
   .then(html => {
     document.getElementById("site-header").innerHTML = html;
@@ -82,7 +82,7 @@ fetch("../header.html")
       <a href="../blog/index.html">← ブログ一覧へ戻る</a>
     </div>
     <div class="small">
-      書きたいときに書く。それでいい。
+      書きたいときに書く。ここはサンプルページだ！
     </div>
   </footer>
 
