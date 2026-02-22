@@ -1,317 +1,245 @@
-:root{
-  /* ===== Theme Tokens (Dark default) ===== */
-  --bg:#0b0f14;
-  --panel:#0f1620;
-  --panel2:#0c121a;
-  --text:#d6dde6;
-  --muted:#98a6b6;
-  --line:rgba(255,255,255,.08);
+/* =========================
+   Base
+========================= */
 
-  --accent:#b23a48;  /* ワインレッド */
-  --accent2:#d2a46b; /* 琥珀（サブ） */
-
-  --shadow:0 12px 40px rgba(0,0,0,.45);
-  --radius:16px;
-
-  /* 画面が広いときの最大幅（少しだけ広げて余白バランス良く） */
-  --maxw:1100px;
-
-  /* レイアウト用 */
-  --pad:18px;
-  --header-bg1:rgba(11,15,20,.92);
-  --header-bg2:rgba(11,15,20,.60);
-
-  /* 背景の“霧” */
-  --glow1:rgba(178,58,72,.18);
-  --glow2:rgba(210,164,107,.12);
+:root {
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --subtext: #666;
+  --accent: #222;
+  --border: #e5e5e5;
 }
 
-/* ===== System Light Mode Auto Sync ===== */
-@media (prefers-color-scheme: light){
-  :root{
-    --bg:#f7f8fb;
-    --panel:#ffffff;
-    --panel2:#f2f4f8;
-    --text:#12151a;
-    --muted:#5b6675;
-    --line:rgba(10,15,20,.12);
-
-    --shadow:0 12px 35px rgba(10,15,20,.12);
-
-    --header-bg1:rgba(247,248,251,.92);
-    --header-bg2:rgba(247,248,251,.70);
-
-    --glow1:rgba(178,58,72,.10);
-    --glow2:rgba(210,164,107,.08);
-  }
-
-  a:hover{color:#000;}
-}
-
-/* （任意）将来、手動切替をやりたくなったらこれで固定できる
-:root[data-theme="dark"]{ ...ダーク値... }
-:root[data-theme="light"]{ ...ライト値... }
-*/
-
-*{box-sizing:border-box;}
-html,body{height:100%;}
-body{
-  margin:0;
-  background:
-    radial-gradient(1000px 700px at 20% -10%, var(--glow1), transparent 60%),
-    radial-gradient(900px 600px at 90% 0%, var(--glow2), transparent 55%),
-    linear-gradient(180deg, var(--bg), color-mix(in srgb, var(--bg) 70%, #000 30%) 70%);
-  color:var(--text);
-  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif;
-  line-height:1.7;
-  letter-spacing:.2px;
-}
-
-a{color:inherit;text-decoration:none;}
-a:hover{color:#fff;}
-img{max-width:100%;height:auto;border-radius:12px;}
-
-/* ===== Container: 幅を“自動調整”しつつ伸びすぎない ===== */
-.container{
-  width:min(var(--maxw), calc(100% - (var(--pad) * 2)));
-  margin:0 auto;
-  padding:28px 0 64px;
-}
-
-.header{
-  position:sticky;
-  top:0;
-  z-index:10;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  background:linear-gradient(180deg, var(--header-bg1), var(--header-bg2));
-  border-bottom:1px solid var(--line);
-}
-
-/* header内だけは左右にパディング付けて、全体と揃える */
-.header .inner{
-  width:min(var(--maxw), calc(100% - (var(--pad) * 2)));
-  margin:0 auto;
-  padding:14px 0;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  flex-wrap:wrap; /* ← 重要：2段前提にする */
-}
-
-.brand{
-  display:flex;
-  align-items:baseline;
-  gap:10px;
-  min-width: 160px;
-}
-.brand .name{
-  font-weight:800;
-  letter-spacing:.6px;
-  text-transform:uppercase;
-}
-.brand .tag{
-  color:var(--muted);
-  font-size:.92rem;
-  border-left:1px solid var(--line);
-  padding-left:10px;
-}
-
-/* ===== Nav: 長くなっても崩れない（折り返し＋可読性） ===== */
-.nav{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  justify-content:flex-end;
-  align-items:center;
-  max-width:100%;
-}
-.nav a{
-  padding:8px 12px;
-  border:1px solid transparent;
-  border-radius:999px;
-  color:var(--muted);
-  font-size:.95rem;
-  white-space:nowrap; /* 1項目の中で改行させない */
-}
-.nav a:hover{
-  color:var(--text);
-  border-color:var(--line);
-  background:rgba(255,255,255,.03);
-}
-.nav a.active{
-  color:#fff;
-  border-color:rgba(178,58,72,.55);
-  background:rgba(178,58,72,.10);
-}
-
-.hero{padding:34px 0 10px;}
-.kicker{
-  color:var(--muted);
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-size:.95rem;
-}
-.kicker .dot{
-  width:10px;height:10px;border-radius:50%;
-  background:var(--accent);
-  box-shadow:0 0 0 6px rgba(178,58,72,.14);
-}
-
-h1{
-  margin:10px 0 10px;
-  font-size:2.05rem;
-  line-height:1.25;
-}
-.lead{margin:0;color:var(--text);max-width:70ch;}
-.sublead{margin:10px 0 0;color:var(--muted);max-width:75ch;}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  gap:14px;
-  margin-top:22px;
-}
-
-.card{
-  grid-column:span 6;
-  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  padding:16px 16px 14px;
-  position:relative;
-  overflow:hidden;
-}
-.card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(600px 220px at 10% 0%, rgba(178,58,72,.10), transparent 60%),
-    radial-gradient(700px 260px at 90% 0%, rgba(210,164,107,.08), transparent 55%);
-  pointer-events:none;
-}
-.card > *{position:relative;}
-.card h2{margin:2px 0 8px;font-size:1.12rem;}
-.card p{margin:0;color:var(--muted);}
-.card .meta{
-  margin-top:10px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
-
-.pill{
-  padding:6px 10px;
-  border-radius:999px;
-  border:1px solid var(--line);
-  color:var(--muted);
-  font-size:.9rem;
-  background:rgba(255,255,255,.02);
-}
-
-.section{margin-top:26px;padding-top:6px;}
-.section h2{margin:0 0 10px;font-size:1.3rem;}
-
-.list{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-.item{
-  display:flex;
-  gap:12px;
-  align-items:flex-start;
-  padding:14px;
-  border:1px solid var(--line);
-  border-radius:14px;
-  background:rgba(255,255,255,.02);
-}
-.item .badge{
-  flex:0 0 auto;
-  width:10px;height:10px;border-radius:50%;
-  margin-top:8px;
-  background:var(--accent2);
-  box-shadow:0 0 0 6px rgba(210,164,107,.12);
-}
-.item .title{font-weight:700;margin:0 0 2px;}
-.item .desc{margin:0;color:var(--muted);}
-.item .link{
-  margin-top:6px;
-  display:inline-flex;
-  gap:8px;
-  align-items:center;
-  color:var(--text);
-  opacity:.92;
-}
-.item .link:hover{opacity:1;}
-.item .link span{color:var(--accent2);}
-
-.footer{
-  margin-top:64px;
-  padding:24px 0;
-  border-top:1px solid var(--line);
-  text-align:center;
-}
-
-.footer-links{
-  display:flex;
-  gap:14px;
-  justify-content:center;
-  margin-bottom:12px;
-}
-.footer-links img{
-  width:20px;
-  height:20px;
-  opacity:.7;          /* ← 少しだけ上げる */
-  transition:opacity .2s ease;
-}
-.footer-links a:hover img{opacity:1;}
-
-.small{font-size:.92rem;color:var(--muted);}
-
-/* ===== Responsive ===== */
-@media (max-width: 900px){
-  .header .inner{
-    align-items:flex-start;
-  }
-
-  .brand{
-    flex:1 1 100%;
-  }
-
-  .nav{
-    justify-content:flex-start;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --text: #e6e6e6;
+    --subtext: #aaa;
+    --accent: #ffffff;
+    --border: #2a2a2a;
   }
 }
 
-@media (max-width: 520px){
-  .nav a{
-    padding:7px 10px;
-    font-size:.92rem;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+    "Hiragino Kaku Gothic ProN", "Noto Sans JP", Arial, sans-serif;
+  line-height: 1.7;
+}
+
+/* =========================
+   Container
+========================= */
+
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* =========================
+   Header
+========================= */
+
+.header {
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+}
+
+.header .inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.brand .name {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.brand .tag {
+  font-size: .85rem;
+  color: var(--subtext);
+}
+
+.nav a {
+  margin-left: 18px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: .95rem;
+  position: relative;
+}
+
+.nav a:hover {
+  opacity: .7;
+}
+
+.nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+}
+
+/* =========================
+   Footer
+========================= */
+
+.footer {
+  border-top: 1px solid var(--border);
+  margin-top: 60px;
+  padding: 30px 0;
+  font-size: .85rem;
+  color: var(--subtext);
+}
+
+.footer .social {
+  margin-bottom: 10px;
+}
+
+.footer .social a {
+  margin-right: 15px;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.footer .social a:hover {
+  opacity: .7;
+}
+
+/* =========================
+   Blog List (トップ・一覧)
+========================= */
+
+.post-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.post-card {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 20px;
+}
+
+.post-card img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.post-card h2 {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+}
+
+.post-card a {
+  text-decoration: none;
+  color: var(--text);
+}
+
+.post-card a:hover {
+  opacity: .7;
+}
+
+.post-card .meta {
+  font-size: .85rem;
+  color: var(--subtext);
+}
+
+/* =========================
+   Blog Post
+========================= */
+
+.post {
+  max-width: 820px;
+  margin: 40px auto;
+}
+
+.post-header {
+  margin-bottom: 20px;
+}
+
+.post-kicker {
+  font-size: .85rem;
+  color: var(--subtext);
+  margin-bottom: 5px;
+}
+
+.post-title {
+  margin: 0;
+  font-size: 1.8rem;
+  line-height: 1.3;
+}
+
+.post-meta {
+  font-size: .85rem;
+  color: var(--subtext);
+  margin-top: 8px;
+}
+
+.post-figure {
+  margin: 25px 0;
+}
+
+.post-thumb {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.post-body p {
+  margin-bottom: 20px;
+  line-height: 1.9;
+}
+
+.post-body h2 {
+  margin: 40px 0 15px;
+  font-size: 1.35rem;
+  line-height: 1.3;
+}
+
+.post-last {
+  margin-top: 35px;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.post-nav {
+  margin-top: 40px;
+}
+
+.post-nav a {
+  text-decoration: none;
+  color: var(--text);
+}
+
+.post-nav a:hover {
+  opacity: .7;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (min-width: 768px) {
+  .post-list {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* ===== Blog Post ===== */
-.post { max-width: 820px; margin: 0 auto; }
-
-.post-header { margin: 18px 0 10px; }
-.post-kicker { margin: 0 0 6px; opacity: .65; font-size: .9rem; }
-.post-title { margin: 0 0 6px; line-height: 1.25; }
-.post-meta { margin: 0; opacity: .6; font-size: .9rem; }
-
-.post-figure { margin: 18px 0 22px; }
-.post-thumb { width: 100%; height: auto; border-radius: 12px; display: block; }
-
-.post-body p { line-height: 1.9; margin: 0 0 18px; }
-.post-body h2 { margin: 34px 0 14px; font-size: 1.35rem; line-height: 1.25; }
-
-.post-last { margin-top: 28px; line-height: 1.6; }
-
-.post-nav { margin: 30px 0 10px; }
-.post-nav .back { text-decoration: none; }
-.post-nav .back:hover { text-decoration: underline; }
+@media (min-width: 1024px) {
+  .post-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
