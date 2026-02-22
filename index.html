@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>タイショーのブログ</title>
+  <meta name="description" content="映画・音楽・AI・ガジェット。思いついたら語る、タイショーのブログ。">
+  <link rel="stylesheet" href="/taisho-site/assets/style.css">
+</head>
+<body>
+
+  <!-- header include -->
+  <div id="site-header"></div>
+
+  <main class="container home">
+    <!-- 左：最新記事 -->
+    <section class="home-main">
+      <header class="home-head">
+        <h1 class="home-title">タイショーのブログ</h1>
+        <p class="home-lead">映画もAIもガジェットも。思いついたら語る場所。</p>
+      </header>
+
+      <div class="home-posts">
+
+        <!-- ====== 最新記事 1 ====== -->
+        <article class="home-card">
+          <a class="home-card-link" href="/taisho-site/blog/diary/2026-02-21-blog-start.html">
+            <img class="home-thumb" src="/taisho-site/assets/images/thumb/thumb-2026-02-21-blog-start.jpg" alt="【難産の末】タイショー、ブログを始める">
+            <div class="home-card-body">
+              <h2 class="home-card-title">【難産の末】タイショー、ブログを始める</h2>
+              <p class="home-meta">2026.02.21 / 日記</p>
+              <p class="home-excerpt">器はできた。料理を出す。合わない人はそっと閉じていい。</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- ====== 最新記事 2（例） ====== -->
+        <article class="home-card">
+          <a class="home-card-link" href="/taisho-site/blog/movies/2026-xx-xx-godfather-1.html">
+            <img class="home-thumb" src="/taisho-site/assets/images/thumb/thumb-godfather.jpg" alt="ゴッドファーザー（初代）">
+            <div class="home-card-body">
+              <h2 class="home-card-title">【沈黙の支配】ゴッドファーザー初代感想【ノワールの傑作】</h2>
+              <p class="home-meta">2026.xx.xx / 映画</p>
+              <p class="home-excerpt">静けさが暴力より怖い。家族という名の組織の物語。</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- ====== 最新記事 3（例） ====== -->
+        <article class="home-card">
+          <a class="home-card-link" href="/taisho-site/blog/gadget/2026-xx-xx-mac-love.html">
+            <img class="home-thumb" src="/taisho-site/assets/images/thumb/thumb-mac.jpg" alt="Macの話">
+            <div class="home-card-body">
+              <h2 class="home-card-title">【Windowsなどいらない】僕がMacを愛用する理由【Apple信者被害者の会】</h2>
+              <p class="home-meta">2026.xx.xx / ガジェット</p>
+              <p class="home-excerpt">安定性、道具感、スタイル。結局ここに戻る。</p>
+            </div>
+          </a>
+        </article>
+
+      </div>
+
+      <div class="home-more">
+        <a class="home-more-link" href="/taisho-site/blog/index.html">→ ブログ一覧へ</a>
+      </div>
+    </section>
+
+    <!-- 右：カテゴリ -->
+    <aside class="home-side">
+      <div class="side-box">
+        <h3 class="side-title">カテゴリ</h3>
+        <ul class="side-list">
+          <li><a href="/taisho-site/blog/index.html?tag=映画">映画 <span>(3)</span></a></li>
+          <li><a href="/taisho-site/blog/index.html?tag=音楽">音楽 <span>(1)</span></a></li>
+          <li><a href="/taisho-site/blog/index.html?tag=AI">AI <span>(2)</span></a></li>
+          <li><a href="/taisho-site/blog/index.html?tag=ガジェット">ガジェット <span>(2)</span></a></li>
+          <li><a href="/taisho-site/blog/index.html?tag=小説/漫画">小説/漫画 <span>(1)</span></a></li>
+          <li><a href="/taisho-site/blog/index.html?tag=日記">日記 <span>(1)</span></a></li>
+        </ul>
+      </div>
+
+      <div class="side-box">
+        <h3 class="side-title">この店について</h3>
+        <p class="side-text">
+          合う人だけ、暇つぶしにどうぞ。<br>
+          合わない人は、そっと閉じてOK。
+        </p>
+      </div>
+    </aside>
+  </main>
+
+  <!-- footer include -->
+  <div id="site-footer"></div>
+
+  <script>
+    fetch("/taisho-site/header.html")
+      .then(r => r.text())
+      .then(html => { document.getElementById("site-header").innerHTML = html; });
+
+    fetch("/taisho-site/footer.html")
+      .then(r => r.text())
+      .then(html => { document.getElementById("site-footer").innerHTML = html; });
+  </script>
+
+</body>
+</html>
