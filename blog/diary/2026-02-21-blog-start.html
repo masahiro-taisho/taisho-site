@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>【難産の末】タイショー、ブログを始める | タイショーのブログ</title>
+  <meta name="description" content="48歳の節目に、自分の言葉を置く場所を作った。難産だったけど、始める。">
+  <link rel="stylesheet" href="/taisho-site/assets/style.css">
+</head>
+<body>
+
+  <!-- header include -->
+  <div id="site-header"></div>
+
+  <main class="container">
+    <article class="post">
+      <header class="post-header">
+        <p class="post-kicker">日記</p>
+        <h1 class="post-title">【難産の末】タイショー、ブログを始める</h1>
+        <p class="post-meta">
+          <time datetime="2026-02-21">2026.02.21</time>
+        </p>
+      </header>
+
+      <!-- thumbnail -->
+      <figure class="post-figure">
+        <img class="post-thumb" src="/taisho-site/assets/images/thumb/thumb-2026-02-21-blog-start.jpg" alt="記事サムネイル">
+      </figure>
+
+      <div class="post-body">
+        <p>48歳になった。<br>
+        急に悟ったわけでもないし、<br>
+        何かを失ったわけでもない。</p>
+
+        <p>ただ、そろそろちゃんと残してみようと思った。</p>
+
+        <p>前からブログを作ろうとはしていた。<br>
+        デザインをいじり、CSSをいじり、構造を整え、<br>
+        “器”だけは何度も完成させた。</p>
+
+        <p>料理が乗らないだけである。</p>
+
+        <h2>喋ると止まらない男</h2>
+
+        <p>僕は、喋り出すと止まらない。<br>
+        自分でもよくわかっている。</p>
+
+        <p>だから文にする。<br>
+        読みたい人だけが読める場所に置いておく。</p>
+
+        <p>合わない人はそっと画面を閉じてくれていい。<br>
+        無理はしなくていい。</p>
+
+        <h2>好きなものは好きと言う</h2>
+
+        <p>映画、音楽、AI、アニメ、技術。<br>
+        僕は僕の視点で語る。</p>
+
+        <p>異論は認める。<br>
+        でも押し付けはしない。</p>
+
+        <p>格好はつけない。<br>
+        でも、ちゃんと考えてはいる。</p>
+
+        <p>そのくらいの温度でやっていく。</p>
+
+        <h2>これは小さな店</h2>
+
+        <p>このブログは大衆向けではない。<br>
+        居抜きの小さな店みたいなものだ。</p>
+
+        <p>友人がふらっと来て、<br>
+        「また語ってるな」<br>
+        くらいでちょうどいい。</p>
+
+        <p>皿はちゃんと磨く。<br>
+        料理もちゃんと出す。</p>
+
+        <p>それだけは守る。</p>
+
+        <p>48歳。<br>
+        今さら何かを証明するつもりはない。</p>
+
+        <p>ただ、好きなものを好きと言う場所を作った。</p>
+
+        <p class="post-last">
+          時は来た<br>
+          それだけだ
+        </p>
+      </div>
+
+      <nav class="post-nav">
+        <a class="back" href="/taisho-site/blog/index.html">← ブログ一覧へ戻る</a>
+      </nav>
+    </article>
+  </main>
+
+  <!-- footer include -->
+  <div id="site-footer"></div>
+
+  <script>
+    // header/footer include (absolute path)
+    fetch("/taisho-site/header.html")
+      .then(r => r.text())
+      .then(html => { document.getElementById("site-header").innerHTML = html; });
+
+    fetch("/taisho-site/footer.html")
+      .then(r => r.text())
+      .then(html => { document.getElementById("site-footer").innerHTML = html; });
+  </script>
+
+</body>
+</html>

@@ -295,3 +295,23 @@ h1{
     font-size:.92rem;
   }
 }
+
+/* ===== Blog Post ===== */
+.post { max-width: 820px; margin: 0 auto; }
+
+.post-header { margin: 18px 0 10px; }
+.post-kicker { margin: 0 0 6px; opacity: .65; font-size: .9rem; }
+.post-title { margin: 0 0 6px; line-height: 1.25; }
+.post-meta { margin: 0; opacity: .6; font-size: .9rem; }
+
+.post-figure { margin: 18px 0 22px; }
+.post-thumb { width: 100%; height: auto; border-radius: 12px; display: block; }
+
+.post-body p { line-height: 1.9; margin: 0 0 18px; }
+.post-body h2 { margin: 34px 0 14px; font-size: 1.35rem; line-height: 1.25; }
+
+.post-last { margin-top: 28px; line-height: 1.6; }
+
+.post-nav { margin: 30px 0 10px; }
+.post-nav .back { text-decoration: none; }
+.post-nav .back:hover { text-decoration: underline; }
