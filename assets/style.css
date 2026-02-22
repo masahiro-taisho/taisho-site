@@ -243,3 +243,46 @@ body {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* =========================
+   Home (Top) Layout
+========================= */
+
+.home { display: flex; gap: 34px; margin-top: 26px; }
+.home-main { flex: 3; min-width: 0; }
+.home-side { flex: 1; min-width: 0; }
+
+.home-head { margin-bottom: 18px; }
+.home-title { margin: 0 0 8px; font-size: 1.9rem; line-height: 1.2; }
+.home-lead { margin: 0; color: var(--subtext); }
+
+.home-posts { display: grid; grid-template-columns: 1fr; gap: 22px; }
+
+.home-card { border-bottom: 1px solid var(--border); padding-bottom: 18px; }
+.home-card-link { display: block; text-decoration: none; color: var(--text); }
+.home-card-link:hover { opacity: .82; }
+
+.home-thumb { width: 100%; height: auto; border-radius: 12px; display: block; margin-bottom: 12px; }
+.home-card-title { margin: 0 0 6px; font-size: 1.2rem; line-height: 1.35; }
+.home-meta { margin: 0 0 8px; font-size: .85rem; color: var(--subtext); }
+.home-excerpt { margin: 0; }
+
+.home-more { margin: 22px 0 0; }
+.home-more-link { text-decoration: none; }
+.home-more-link:hover { text-decoration: underline; }
+
+.side-box { border: 1px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 16px; }
+.side-title { margin: 0 0 10px; font-size: 1.05rem; }
+.side-text { margin: 0; color: var(--subtext); }
+
+.side-list { list-style: none; padding: 0; margin: 0; }
+.side-list li { margin: 10px 0; }
+.side-list a { text-decoration: none; color: var(--text); }
+.side-list a:hover { opacity: .75; }
+.side-list span { color: var(--subtext); margin-left: 6px; }
+
+/* Responsive: 1 column on mobile */
+@media (max-width: 860px) {
+  .home { flex-direction: column; }
+  .home-side { order: 2; }
+}
