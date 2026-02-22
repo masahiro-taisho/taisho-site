@@ -93,13 +93,29 @@
   <div id="site-footer"></div>
 
   <script>
-    fetch("/taisho-site/header.html")
-      .then(r => r.text())
-      .then(html => { document.getElementById("site-header").innerHTML = html; });
+  function setActiveNav(){
+    const path = location.pathname;
+    document.querySelectorAll(".nav a").forEach(a => {
+      const hrefPath = new URL(a.href).pathname;
+      // 完全一致
+      if (hrefPath === path) a.classList.add("active");
+      // blog 配下なら「日記」を点灯
+      if (path.startsWith("/taisho-site/blog/") && hrefPath === "/taisho-site/blog/index.html"){
+        a.classList.add("active");
+      }
+    });
+  }
 
-    fetch("/taisho-site/footer.html")
-      .then(r => r.text())
-      .then(html => { document.getElementById("site-footer").innerHTML = html; });
+  fetch("/taisho-site/header.html")
+    .then(r => r.text())
+    .then(html => {
+      document.getElementById("site-header").innerHTML = html;
+      setActiveNav();
+    });
+
+  fetch("/taisho-site/footer.html")
+    .then(r => r.text())
+    .then(html => { document.getElementById("site-footer").innerHTML = html; });
   </script>
 
 </body>

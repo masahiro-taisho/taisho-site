@@ -354,3 +354,85 @@ body {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* ===== Header layout fix (inner を container 相当に) ===== */
+.header .inner{
+  max-width:980px;
+  margin:0 auto;
+  padding:0 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+}
+
+.brand{display:flex; flex-direction:column; gap:2px;}
+.brand .name{font-weight:700; letter-spacing:.04em;}
+.brand .tag{font-size:.85rem; opacity:.7;}
+
+/* ===== Nav: 折り返しと見た目 ===== */
+.nav{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.nav a{
+  text-decoration:none;
+  opacity:.9;
+}
+.nav a:hover{opacity:.7;}
+.nav a.active{
+  opacity:1;
+  font-weight:600;
+  position:relative;
+}
+.nav a.active::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:100%;
+  height:2px;
+  background:currentColor;
+  opacity:.9;
+}
+
+/* ===== Footer: footer-links をちゃんと整える ===== */
+.footer{
+  border-top:1px solid var(--border);
+  margin-top:60px;
+  padding:28px 0;
+}
+
+.footer-links{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:14px;
+  margin-bottom:10px;
+}
+
+.footer-links a{display:inline-flex; align-items:center; justify-content:center;}
+.footer-links img{
+  width:22px;
+  height:22px;
+  opacity:.78;                 /* “うっすら”問題はここ。好みで 0.9 とかに */
+  transition:opacity .15s ease, transform .15s ease, filter .15s ease;
+}
+.footer-links a:hover img{
+  opacity:1;
+  transform:translateY(-1px);
+}
+
+/* SimpleIcons が黒アイコン想定なので、ダーク時は反転 */
+@media (prefers-color-scheme: dark){
+  .footer-links img{ filter: invert(1); }
+}
+
+.footer .small{
+  text-align:center;
+  font-size:.85rem;
+  color:var(--subtext);
+}
