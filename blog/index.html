@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ブログ一覧 | タイショーのブログ</title>
+  <meta name="description" content="タイショーのブログ記事一覧。映画・音楽・AI・ガジェットなど。">
+  <link rel="stylesheet" href="/taisho-site/assets/style.css">
+</head>
+<body>
+
+  <!-- header include -->
+  <div id="site-header"></div>
+
+  <main class="container blog-index">
+
+    <header class="blog-index-head">
+      <h1>ブログ一覧</h1>
+      <p>思いついたら語る。順番に並べているだけ。</p>
+    </header>
+
+    <div class="blog-grid">
+
+      <!-- ===== 記事1 ===== -->
+      <article class="blog-card" data-category="日記">
+        <a href="/taisho-site/blog/diary/2026-02-21-blog-start.html">
+          <img src="/taisho-site/assets/images/thumb/thumb-2026-02-21-blog-start.png" alt="">
+          <div class="blog-card-body">
+            <h2>【難産の末】タイショー、ブログを始める</h2>
+            <p class="blog-meta">2026.02.21 / 日記</p>
+          </div>
+        </a>
+      </article>
+
+      <!-- ===== 記事2 ===== -->
+      <article class="blog-card" data-category="映画">
+        <a href="/taisho-site/blog/movies/2026-xx-xx-godfather-1.html">
+          <img src="/taisho-site/assets/images/thumb/thumb-godfather.jpg" alt="">
+          <div class="blog-card-body">
+            <h2>【沈黙の支配】ゴッドファーザー初代感想【ノワールの傑作】</h2>
+            <p class="blog-meta">2026.xx.xx / 映画</p>
+          </div>
+        </a>
+      </article>
+
+      <!-- ===== 記事3 ===== -->
+      <article class="blog-card" data-category="ガジェット">
+        <a href="/taisho-site/blog/gadget/2026-xx-xx-mac-love.html">
+          <img src="/taisho-site/assets/images/thumb/thumb-mac.jpg" alt="">
+          <div class="blog-card-body">
+            <h2>【Windowsなどいらない】僕がMacを愛用する理由【Apple信者被害者の会】</h2>
+            <p class="blog-meta">2026.xx.xx / ガジェット</p>
+          </div>
+        </a>
+      </article>
+
+    </div>
+
+  </main>
+
+  <!-- footer include -->
+  <div id="site-footer"></div>
+
+  <script>
+    fetch("/taisho-site/header.html")
+      .then(r => r.text())
+      .then(html => { document.getElementById("site-header").innerHTML = html; });
+
+    fetch("/taisho-site/footer.html")
+      .then(r => r.text())
+      .then(html => { document.getElementById("site-footer").innerHTML = html; });
+  </script>
+
+</body>
+</html>
