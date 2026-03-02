@@ -436,3 +436,24 @@ body {
   font-size:.85rem;
   color:var(--subtext);
 }
+/* ===== Minimal Header ===== */
+
+.header.minimal {
+  border-bottom: 1px solid var(--border);
+  padding: 22px 0;
+}
+
+.site-title {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.site-title a {
+  text-decoration: none;
+  color: var(--text);
+}
+
+.site-title a:hover {
+  opacity: .7;
+}
