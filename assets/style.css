@@ -457,3 +457,13 @@ body {
 .site-title a:hover {
   opacity: .7;
 }
+
+.external-link {
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.external-link::after {
+  content: " ↗";
+  font-size: 0.9em;
+}
