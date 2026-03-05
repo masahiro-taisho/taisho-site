@@ -12,7 +12,7 @@
 <script>
 fetch("/taisho-site/header.html")
   .then(r => r.text())
-  .then(html => document.getElementById("site-header").innerHTML = html)
+  .then(t => document.getElementById("site-header").innerHTML = t)
   .catch(() => {});
 </script>
 
@@ -112,7 +112,7 @@ fetch("/taisho-site/header.html")
 <script>
 fetch("/taisho-site/footer.html")
   .then(r => r.text())
-  .then(html => document.getElementById("site-footer").innerHTML = html)
+  .then(t => document.getElementById("site-footer").innerHTML = t)
   .catch(() => {});
 </script>
 

@@ -4,12 +4,14 @@ import re
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Tuple
 
 
-# ====== Settings ======
-BASE = "/taisho-site"  # Project Pages の basePath。User Pagesなら "" にする
-SITE_TITLE = "タイショーとは何者なのか"
+# =========================
+# Settings
+# =========================
+BASE = "/taisho-site"  # GitHub Pages (Project Pages) の basePath。User Pagesなら "" にする
+SITE_TITLE = "タイショーとは何者なのか"  # トップの看板（好みで変えてOK）
 SITE_TAGLINE = "渋くて、ゆるい。好きなものの置き場。"
 LATEST_COUNT = 3
 RELATED_COUNT = 3
@@ -21,7 +23,8 @@ STYLE_CSS = f"{BASE}/assets/style.css"
 HEADER_HTML = f"{BASE}/header.html"
 FOOTER_HTML = f"{BASE}/footer.html"
 
-# カテゴリ表示名（必要に応じて増やしてOK）
+
+# カテゴリ表示名（必要なら増やしてOK）
 CATEGORY_LABEL: Dict[str, str] = {
     "gadget": "ガジェット",
     "youtube": "YouTube",
@@ -34,7 +37,6 @@ CATEGORY_LABEL: Dict[str, str] = {
 }
 
 # カテゴリの並び順（未定義カテゴリは後ろに回す）
-# まずはタイショー指定：ガジェット → YouTube → ガンダム → 日記
 CATEGORY_ORDER: List[str] = [
     "gadget",
     "youtube",
@@ -46,7 +48,11 @@ CATEGORY_ORDER: List[str] = [
     "books",
 ]
 
-# 記事メタ（HTMLコメント）：
+
+# =========================
+# Meta parsing (HTML comment)
+# =========================
+# 記事先頭にこう書く:
 # <!--
 # title: ...
 # date: 2026-03-05
@@ -65,8 +71,8 @@ class Post:
     category: str
     thumb: str
     excerpt: str
-    href: str  # /taisho-site/blog/<category>/<file>.html
-    source_path: Path  # repo内の実ファイルパス
+    href: str         # /taisho-site/blog/<cat>/<file>.html
+    source_path: Path # repo内の実ファイル
 
 
 def read_text(path: Path) -> str:
@@ -109,11 +115,6 @@ def category_label(cat: str) -> str:
     return CATEGORY_LABEL.get(cat, cat)
 
 
-def sort_key(post: Post) -> Tuple[str, str]:
-    # 新しい順
-    return (post.date, post.title)
-
-
 def ordered_categories(cats: List[str]) -> List[str]:
     s = set(cats)
     ordered = [c for c in CATEGORY_ORDER if c in s]
@@ -133,12 +134,11 @@ def discover_posts() -> List[Post]:
 
         html = read_text(html_path)
         meta = parse_meta(html)
-
-        # メタが無い記事はスキップ（sample等の混入を防ぐ）
         if not meta:
+            # メタ無しは無視（サンプルや途中ファイル混入防止）
             continue
 
-        # category は「フォルダ名」を優先（メタcategoryより強い）
+        # category はフォルダ名を優先（運用に合わせる）
         cat = html_path.parent.name
 
         title = meta.get("title", "").strip()
@@ -146,19 +146,17 @@ def discover_posts() -> List[Post]:
         thumb = meta.get("thumb", "").strip()
         excerpt = meta.get("excerpt", "").strip()
 
-        # 最低限チェック
         if not title:
             print(f"[skip] title missing: {html_path}")
             continue
         if not date or not valid_date(date):
-            print(f"[skip] invalid date: {html_path}  date={date!r}")
+            print(f"[skip] invalid date: {html_path} date={date!r}")
             continue
         if not thumb:
             thumb = f"{BASE}/assets/images/thumb/placeholder.jpg"
         if not excerpt:
             excerpt = "（本文より）"
 
-        # href は basePath + 相対
         rel = html_path.relative_to(ROOT).as_posix()  # blog/xxx/yyy.html
         href = f"{BASE}/{rel}"
 
@@ -175,10 +173,13 @@ def discover_posts() -> List[Post]:
         )
 
     # 新しい順
-    posts.sort(key=sort_key, reverse=True)
+    posts.sort(key=lambda p: (p.date, p.title), reverse=True)
     return posts
 
 
+# =========================
+# Layout helpers
+# =========================
 def common_head(page_title: str) -> str:
     full = f"{page_title} | {SITE_TITLE}"
     return f"""\
@@ -195,7 +196,7 @@ def common_header_loader() -> str:
 <script>
 fetch("{HEADER_HTML}")
   .then(r => r.text())
-  .then(html => document.getElementById("site-header").innerHTML = html)
+  .then(t => document.getElementById("site-header").innerHTML = t)
   .catch(() => {{}});
 </script>
 """
@@ -207,7 +208,7 @@ def common_footer_loader() -> str:
 <script>
 fetch("{FOOTER_HTML}")
   .then(r => r.text())
-  .then(html => document.getElementById("site-footer").innerHTML = html)
+  .then(t => document.getElementById("site-footer").innerHTML = t)
   .catch(() => {{}});
 </script>
 """
@@ -233,6 +234,9 @@ def render_layout(page_title: str, main_html: str) -> str:
 """
 
 
+# =========================
+# UI parts
+# =========================
 def render_category_sidebar(counts: Dict[str, int]) -> str:
     cats = ordered_categories(list(counts.keys()))
     items: List[str] = []
@@ -276,6 +280,9 @@ def render_post_cards(posts: List[Post]) -> str:
     return "\n".join(cards)
 
 
+# =========================
+# Pages build
+# =========================
 def build_root_index(posts: List[Post], counts: Dict[str, int]) -> str:
     latest = posts[:LATEST_COUNT]
     latest_cards: List[str] = []
@@ -301,7 +308,7 @@ def build_root_index(posts: List[Post], counts: Dict[str, int]) -> str:
   <div class="home-hero-inner">
     <p class="home-kicker">{SITE_TITLE}</p>
     <h1 class="home-title">{SITE_TAGLINE}</h1>
-    <p class="home-lead">映画、音楽、ガジェット、YouTube、AI。思いついたら書く。合わない人はそっと閉じてOK。</p>
+    <p class="home-lead">映画、音楽、ガジェット、YouTube、ガンダム、AI。思いついたら書く。合わない人はそっと閉じてOK。</p>
     <p class="home-cta"><a class="btn" href="{BASE}/blog/index.html">ブログ一覧へ</a></p>
   </div>
 </section>
@@ -360,45 +367,57 @@ def build_category_index(category: str, posts: List[Post], counts: Dict[str, int
     return render_layout(label, main)
 
 
-# ====== Related posts insertion ======
+# =========================
+# Insert: Related posts & Kicker
+# =========================
 RELATED_START = "<!-- related posts:start -->"
 RELATED_END = "<!-- related posts:end -->"
 RELATED_MARKER = "<!-- related posts -->"
 
+POST_HEADER_RE = re.compile(r'(<header\s+class="post-header"\s*>\s*)', re.IGNORECASE)
+
 
 def build_related_section(current: Post, all_posts: List[Post], limit: int = RELATED_COUNT) -> str:
-    # 同カテゴリから自分以外を新しい順で抽出
     related = [p for p in all_posts if p.category == current.category and p.href != current.href]
     related = related[:limit]
     if not related:
         return ""
-
     return f"""\
 <section class="related-posts">
   <h2 class="section-title">関連記事</h2>
-  <div class="blog-grid related-grid">
+  <div class="home-main">
     {render_post_cards(related)}
   </div>
 </section>
 """
 
 
-def upsert_related_into_post(html: str, related_html: str) -> str:
-    # すでに start/end があるなら、その中身を差し替える
+def upsert_related(html: str, related_html: str) -> str:
     if RELATED_START in html and RELATED_END in html:
         pre, rest = html.split(RELATED_START, 1)
         _, post = rest.split(RELATED_END, 1)
         return pre + RELATED_START + "\n" + related_html + "\n" + RELATED_END + post
 
-    # marker があるなら、start/end に昇格させて差し込む
     if RELATED_MARKER in html:
         block = f"{RELATED_START}\n{related_html}\n{RELATED_END}"
         return html.replace(RELATED_MARKER, block)
 
-    # 何もなければ触らない
     return html
 
 
+def upsert_kicker(html: str, category: str) -> str:
+    # 既にkickerがある記事は触らない（手動の味も残せる）
+    if 'class="post-kicker"' in html:
+        return html
+
+    kicker = f'<p class="post-kicker">{category_label(category)}</p>\n'
+    # post-header直下に差し込む
+    return POST_HEADER_RE.sub(r"\1" + kicker, html, count=1)
+
+
+# =========================
+# main
+# =========================
 def main() -> None:
     posts = discover_posts()
 
@@ -416,20 +435,27 @@ def main() -> None:
         cat_posts = [p for p in posts if p.category == cat]
         write_text(BLOG_DIR / cat / "index.html", build_category_index(cat, cat_posts, counts))
 
-    # 生成：関連記事を各記事へ差し込み（markerがある記事だけ）
+    # 追記：各記事へ kicker + 関連記事を差し込み（markerがある記事だけ関連記事）
     for p in posts:
         html = read_text(p.source_path)
+
+        # kickerは全記事対象（post-headerがある記事だけ効く）
+        html2 = upsert_kicker(html, p.category)
+
+        # 関連記事は marker/start-end がある記事だけ差し込み（増殖しない）
         related_html = build_related_section(p, posts, limit=RELATED_COUNT)
-        new_html = upsert_related_into_post(html, related_html)
-        if new_html != html:
-            write_text(p.source_path, new_html)
+        html3 = upsert_related(html2, related_html)
+
+        if html3 != html:
+            write_text(p.source_path, html3)
 
     print("[ok] generated:")
     print(f" - {ROOT / 'index.html'}")
     print(f" - {BLOG_DIR / 'index.html'}")
     for cat in ordered_categories(list(counts.keys())):
         print(f" - {BLOG_DIR / cat / 'index.html'}")
-    print(" - related posts inserted (only files with marker/start-end)")
+    print(" - kicker inserted (if missing)")
+    print(" - related posts inserted (only if marker/start-end exists)")
 
 
 if __name__ == "__main__":

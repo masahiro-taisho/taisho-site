@@ -12,7 +12,7 @@
 <script>
 fetch("/taisho-site/header.html")
   .then(r => r.text())
-  .then(html => document.getElementById("site-header").innerHTML = html)
+  .then(t => document.getElementById("site-header").innerHTML = t)
   .catch(() => {});
 </script>
 
@@ -22,7 +22,7 @@ fetch("/taisho-site/header.html")
   <div class="home-hero-inner">
     <p class="home-kicker">タイショーとは何者なのか</p>
     <h1 class="home-title">渋くて、ゆるい。好きなものの置き場。</h1>
-    <p class="home-lead">映画、音楽、ガジェット、YouTube、AI。思いついたら書く。合わない人はそっと閉じてOK。</p>
+    <p class="home-lead">映画、音楽、ガジェット、YouTube、ガンダム、AI。思いついたら書く。合わない人はそっと閉じてOK。</p>
     <p class="home-cta"><a class="btn" href="/taisho-site/blog/index.html">ブログ一覧へ</a></p>
   </div>
 </section>
@@ -80,7 +80,7 @@ fetch("/taisho-site/header.html")
 <script>
 fetch("/taisho-site/footer.html")
   .then(r => r.text())
-  .then(html => document.getElementById("site-footer").innerHTML = html)
+  .then(t => document.getElementById("site-footer").innerHTML = t)
   .catch(() => {});
 </script>
 
