@@ -371,3 +371,37 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+def render_related(current_post, all_posts, limit=3):
+    related = []
+
+    for p in all_posts:
+        if p.href == current_post.href:
+            continue
+        if p.category == current_post.category:
+            related.append(p)
+
+    related = related[:limit]
+
+    if not related:
+        return ""
+
+    items = ""
+    for p in related:
+        items += f"""
+<li>
+  <a href="{p.href}">
+    <img src="{p.thumb}" loading="lazy">
+    <span>{p.title}</span>
+  </a>
+</li>
+"""
+
+    return f"""
+<section class="related-posts">
+<h2>関連記事</h2>
+<ul class="related-list">
+{items}
+</ul>
+</section>
+"""

@@ -511,3 +511,32 @@ body {
   object-fit: cover;
   border-radius: 12px;
 }
+.related-posts{
+margin-top:60px;
+}
+
+.related-posts h2{
+font-size:1.4rem;
+margin-bottom:20px;
+}
+
+.related-list{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+gap:16px;
+list-style:none;
+padding:0;
+}
+
+.related-list img{
+width:100%;
+aspect-ratio:16/9;
+object-fit:cover;
+border-radius:8px;
+}
+
+.related-list span{
+display:block;
+font-size:0.9rem;
+margin-top:6px;
+}
