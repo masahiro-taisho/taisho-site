@@ -540,3 +540,189 @@ display:block;
 font-size:0.9rem;
 margin-top:6px;
 }
+/* =========================
+   Blog Cards (Polish Pack)
+   ========================= */
+
+/* 変数（色は今のサイトに馴染む前提。必要なら後で微調整） */
+:root{
+  --card-radius:16px;
+  --card-gap:16px;
+  --card-border:rgba(255,255,255,.10);
+  --card-bg:rgba(255,255,255,.04);
+  --card-bg-hover:rgba(255,255,255,.07);
+  --text-weak:rgba(255,255,255,.72);
+  --text-weaker:rgba(255,255,255,.58);
+  --shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+/* 一覧のレイアウト：横幅に応じて自動で2〜3列 */
+.home-main{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:var(--card-gap);
+  align-content:start;
+}
+
+/* 既存が1列指定されてても上書きしてカード化 */
+.blog-card,
+.home-card{
+  background:var(--card-bg);
+  border:1px solid var(--card-border);
+  border-radius:var(--card-radius);
+  overflow:hidden;
+  box-shadow:none;
+  transform:translateZ(0);
+  transition:transform .18s ease, background .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+/* カード全体がリンク */
+.blog-card > a,
+.home-card-link{
+  display:block;
+  color:inherit;
+  text-decoration:none;
+}
+
+/* サムネ統一（16:9） */
+.blog-card img,
+.home-thumb{
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  display:block;
+  background:rgba(255,255,255,.04);
+}
+
+/* 本文エリア */
+.blog-card-body,
+.home-card-body{
+  padding:14px 14px 16px;
+}
+
+/* タイトル */
+.blog-card-body h2,
+.home-card-title{
+  font-size:1.02rem;
+  line-height:1.35;
+  margin:0 0 10px;
+  letter-spacing:.01em;
+}
+
+/* メタ（日時/カテゴリ） */
+.blog-meta,
+.home-meta{
+  margin:0 0 8px;
+  font-size:.85rem;
+  color:var(--text-weaker);
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+
+/* 抜粋 */
+.blog-excerpt,
+.home-excerpt{
+  margin:0;
+  font-size:.92rem;
+  line-height:1.6;
+  color:var(--text-weak);
+}
+
+/* hover / focus */
+.blog-card:hover,
+.home-card:hover{
+  background:var(--card-bg-hover);
+  border-color:rgba(255,255,255,.18);
+  box-shadow:var(--shadow);
+  transform:translateY(-2px);
+}
+
+.blog-card a:focus-visible,
+.home-card-link:focus-visible{
+  outline:2px solid rgba(255,255,255,.35);
+  outline-offset:3px;
+  border-radius:14px;
+}
+
+/* モバイルは1列寄りに（見やすさ優先） */
+@media (max-width: 640px){
+  .home-main{
+    grid-template-columns:1fr;
+  }
+  .blog-card-body h2,
+  .home-card-title{
+    font-size:1.05rem;
+  }
+}
+
+/* 右側サイドバーがある場合のグリッド調整（home-grid想定） */
+.home-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 280px;
+  gap:22px;
+  align-items:start;
+}
+
+@media (max-width: 980px){
+  .home-grid{
+    grid-template-columns:1fr;
+  }
+  .home-side{
+    order:2;
+  }
+}
+
+/* サイドバー（カテゴリ）をカード風に */
+.side-box,
+.side-card{
+  background:var(--card-bg);
+  border:1px solid var(--card-border);
+  border-radius:var(--card-radius);
+  padding:14px;
+}
+
+.side-title{
+  margin:0 0 10px;
+  font-size:1rem;
+}
+
+.cat-list,
+.side-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:grid;
+  gap:8px;
+}
+
+.cat-link,
+.text-link{
+  text-decoration:none;
+  color:inherit;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:8px 10px;
+  border-radius:12px;
+  transition:background .15s ease;
+}
+
+.cat-link:hover,
+.text-link:hover{
+  background:rgba(255,255,255,.06);
+}
+
+.cat-count,
+.count{
+  color:var(--text-weaker);
+  font-size:.9em;
+}
+
+/* 画像が遅いときの“ガクッ”防止（読み込み前の枠確保） */
+.blog-card img,
+.home-thumb{
+  content-visibility:auto;
+  contain-intrinsic-size: 720px 405px; /* 16:9想定の仮サイズ */
+}
