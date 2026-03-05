@@ -22,7 +22,7 @@ FOOTER_HTML = f"{BASE}/footer.html"
 
 # カテゴリ表示名（必要に応じて増やしてOK）
 CATEGORY_LABEL: Dict[str, str] = {
-    "diary": "日記",
+    "diary": "雑記",
     "gadget": "ガジェット",
     "youtube": "YouTube",
     "movies": "映画／TV／映像作品",
