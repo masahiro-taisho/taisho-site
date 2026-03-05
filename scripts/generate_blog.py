@@ -9,7 +9,7 @@ from typing import Dict, List, Optional, Tuple
 
 # ====== Settings ======
 BASE = "/taisho-site"  # Project Pages の basePath。User Pagesなら "" にする
-SITE_TITLE = "タイショーのブログ"
+SITE_TITLE = "タイショーとは何者なのか"
 SITE_TAGLINE = "渋くて、ゆるい。好きなものの置き場。"
 LATEST_COUNT = 3
 RELATED_COUNT = 3
