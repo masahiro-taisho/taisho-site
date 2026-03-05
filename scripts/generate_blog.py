@@ -34,13 +34,14 @@ CATEGORY_LABEL: Dict[str, str] = {
 
 # カテゴリの並び順（未定義カテゴリは後ろに回す）
 CATEGORY_ORDER: List[str] = [
-    "diary",
-    "youtube",
     "gadget",
+    "youtube",
+    "gundam",
     "movies",
     "music",
     "software",
     "books",
+    "diary",
 ]
 
 
