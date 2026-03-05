@@ -12,6 +12,7 @@ BASE = "/taisho-site"  # Project Pages の basePath。User Pagesなら "" にす
 SITE_TITLE = "タイショーのブログ"
 SITE_TAGLINE = "渋くて、ゆるい。好きなものの置き場。"
 LATEST_COUNT = 3
+RELATED_COUNT = 3
 
 ROOT = Path(__file__).resolve().parents[1]  # repo root
 BLOG_DIR = ROOT / "blog"
@@ -22,27 +23,39 @@ FOOTER_HTML = f"{BASE}/footer.html"
 
 # カテゴリ表示名（必要に応じて増やしてOK）
 CATEGORY_LABEL: Dict[str, str] = {
-    "diary": "雑記",
     "gadget": "ガジェット",
     "youtube": "YouTube",
+    "gundam": "ガンダム",
+    "diary": "日記",
     "movies": "映画／TV／映像作品",
     "books": "小説／漫画",
     "music": "音楽",
     "software": "ソフト",
-    "gundam": "ガンダム",
 }
 
 # カテゴリの並び順（未定義カテゴリは後ろに回す）
+# まずはタイショー指定：ガジェット → YouTube → ガンダム → 日記
 CATEGORY_ORDER: List[str] = [
     "gadget",
     "youtube",
     "gundam",
+    "diary",
     "movies",
     "music",
     "software",
     "books",
-    "diary",
 ]
+
+# 記事メタ（HTMLコメント）：
+# <!--
+# title: ...
+# date: 2026-03-05
+# category: gadget
+# thumb: /taisho-site/assets/images/thumb/xxx.jpg
+# excerpt: ...
+# -->
+META_RE = re.compile(r"^\s*<!--\s*(.*?)\s*-->\s*", re.DOTALL)
+KV_RE = re.compile(r"^\s*([a-zA-Z0-9_-]+)\s*:\s*(.*?)\s*$")
 
 
 @dataclass(frozen=True)
@@ -53,10 +66,7 @@ class Post:
     thumb: str
     excerpt: str
     href: str  # /taisho-site/blog/<category>/<file>.html
-
-
-META_RE = re.compile(r"^\s*<!--\s*(.*?)\s*-->\s*", re.DOTALL)
-KV_RE = re.compile(r"^\s*([a-zA-Z0-9_-]+)\s*:\s*(.*?)\s*$")
+    source_path: Path  # repo内の実ファイルパス
 
 
 def read_text(path: Path) -> str:
@@ -99,9 +109,16 @@ def category_label(cat: str) -> str:
     return CATEGORY_LABEL.get(cat, cat)
 
 
-def sort_key(post: Post) -> Tuple:
+def sort_key(post: Post) -> Tuple[str, str]:
     # 新しい順
     return (post.date, post.title)
+
+
+def ordered_categories(cats: List[str]) -> List[str]:
+    s = set(cats)
+    ordered = [c for c in CATEGORY_ORDER if c in s]
+    rest = sorted([c for c in s if c not in set(CATEGORY_ORDER)])
+    return ordered + rest
 
 
 def discover_posts() -> List[Post]:
@@ -117,8 +134,13 @@ def discover_posts() -> List[Post]:
         html = read_text(html_path)
         meta = parse_meta(html)
 
-        # category はフォルダ名を優先
+        # メタが無い記事はスキップ（sample等の混入を防ぐ）
+        if not meta:
+            continue
+
+        # category は「フォルダ名」を優先（メタcategoryより強い）
         cat = html_path.parent.name
+
         title = meta.get("title", "").strip()
         date = meta.get("date", "").strip()
         thumb = meta.get("thumb", "").strip()
@@ -132,7 +154,6 @@ def discover_posts() -> List[Post]:
             print(f"[skip] invalid date: {html_path}  date={date!r}")
             continue
         if not thumb:
-            # thumb 未設定でも動くように（ダミー画像など用意するならここを変更）
             thumb = f"{BASE}/assets/images/thumb/placeholder.jpg"
         if not excerpt:
             excerpt = "（本文より）"
@@ -149,19 +170,13 @@ def discover_posts() -> List[Post]:
                 thumb=thumb,
                 excerpt=excerpt,
                 href=href,
+                source_path=html_path,
             )
         )
 
     # 新しい順
     posts.sort(key=sort_key, reverse=True)
     return posts
-
-
-def ordered_categories(cats: List[str]) -> List[str]:
-    s = set(cats)
-    ordered = [c for c in CATEGORY_ORDER if c in s]
-    rest = sorted([c for c in s if c not in set(CATEGORY_ORDER)])
-    return ordered + rest
 
 
 def common_head(page_title: str) -> str:
@@ -174,8 +189,7 @@ def common_head(page_title: str) -> str:
 """
 
 
-def common_header_footer_loader() -> str:
-    # header.html / footer.html を fetch で差し込む（既存運用と同じ想定）
+def common_header_loader() -> str:
     return f"""\
 <div id="site-header"></div>
 <script>
@@ -207,7 +221,7 @@ def render_layout(page_title: str, main_html: str) -> str:
 {common_head(page_title)}
 </head>
 <body>
-{common_header_footer_loader()}
+{common_header_loader()}
 
 <main class="container">
 {main_html}
@@ -221,10 +235,10 @@ def render_layout(page_title: str, main_html: str) -> str:
 
 def render_category_sidebar(counts: Dict[str, int]) -> str:
     cats = ordered_categories(list(counts.keys()))
-    items = []
+    items: List[str] = []
     for c in cats:
         label = category_label(c)
-        n = counts[c]
+        n = counts.get(c, 0)
         href = f"{BASE}/blog/{c}/index.html"
         items.append(
             f'<li><a class="cat-link" href="{href}">{label}<span class="cat-count">({n})</span></a></li>'
@@ -242,7 +256,7 @@ def render_category_sidebar(counts: Dict[str, int]) -> str:
 
 
 def render_post_cards(posts: List[Post]) -> str:
-    cards = []
+    cards: List[str] = []
     for p in posts:
         label = category_label(p.category)
         cards.append(
@@ -264,7 +278,7 @@ def render_post_cards(posts: List[Post]) -> str:
 
 def build_root_index(posts: List[Post], counts: Dict[str, int]) -> str:
     latest = posts[:LATEST_COUNT]
-    latest_cards = []
+    latest_cards: List[str] = []
     for p in latest:
         label = category_label(p.category)
         latest_cards.append(
@@ -346,6 +360,45 @@ def build_category_index(category: str, posts: List[Post], counts: Dict[str, int
     return render_layout(label, main)
 
 
+# ====== Related posts insertion ======
+RELATED_START = "<!-- related posts:start -->"
+RELATED_END = "<!-- related posts:end -->"
+RELATED_MARKER = "<!-- related posts -->"
+
+
+def build_related_section(current: Post, all_posts: List[Post], limit: int = RELATED_COUNT) -> str:
+    # 同カテゴリから自分以外を新しい順で抽出
+    related = [p for p in all_posts if p.category == current.category and p.href != current.href]
+    related = related[:limit]
+    if not related:
+        return ""
+
+    return f"""\
+<section class="related-posts">
+  <h2 class="section-title">関連記事</h2>
+  <div class="blog-grid related-grid">
+    {render_post_cards(related)}
+  </div>
+</section>
+"""
+
+
+def upsert_related_into_post(html: str, related_html: str) -> str:
+    # すでに start/end があるなら、その中身を差し替える
+    if RELATED_START in html and RELATED_END in html:
+        pre, rest = html.split(RELATED_START, 1)
+        _, post = rest.split(RELATED_END, 1)
+        return pre + RELATED_START + "\n" + related_html + "\n" + RELATED_END + post
+
+    # marker があるなら、start/end に昇格させて差し込む
+    if RELATED_MARKER in html:
+        block = f"{RELATED_START}\n{related_html}\n{RELATED_END}"
+        return html.replace(RELATED_MARKER, block)
+
+    # 何もなければ触らない
+    return html
+
+
 def main() -> None:
     posts = discover_posts()
 
@@ -359,50 +412,25 @@ def main() -> None:
     write_text(BLOG_DIR / "index.html", build_blog_index(posts, counts))
 
     # 生成：カテゴリ一覧
-    for cat in counts.keys():
+    for cat in ordered_categories(list(counts.keys())):
         cat_posts = [p for p in posts if p.category == cat]
         write_text(BLOG_DIR / cat / "index.html", build_category_index(cat, cat_posts, counts))
+
+    # 生成：関連記事を各記事へ差し込み（markerがある記事だけ）
+    for p in posts:
+        html = read_text(p.source_path)
+        related_html = build_related_section(p, posts, limit=RELATED_COUNT)
+        new_html = upsert_related_into_post(html, related_html)
+        if new_html != html:
+            write_text(p.source_path, new_html)
 
     print("[ok] generated:")
     print(f" - {ROOT / 'index.html'}")
     print(f" - {BLOG_DIR / 'index.html'}")
-    for cat in counts.keys():
+    for cat in ordered_categories(list(counts.keys())):
         print(f" - {BLOG_DIR / cat / 'index.html'}")
+    print(" - related posts inserted (only files with marker/start-end)")
 
 
 if __name__ == "__main__":
     main()
-
-def render_related(current_post, all_posts, limit=3):
-    related = []
-
-    for p in all_posts:
-        if p.href == current_post.href:
-            continue
-        if p.category == current_post.category:
-            related.append(p)
-
-    related = related[:limit]
-
-    if not related:
-        return ""
-
-    items = ""
-    for p in related:
-        items += f"""
-<li>
-  <a href="{p.href}">
-    <img src="{p.thumb}" loading="lazy">
-    <span>{p.title}</span>
-  </a>
-</li>
-"""
-
-    return f"""
-<section class="related-posts">
-<h2>関連記事</h2>
-<ul class="related-list">
-{items}
-</ul>
-</section>
-"""
