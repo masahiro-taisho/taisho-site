@@ -21,9 +21,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      # ★ ここから追加：Pythonでブログ一覧を自動生成
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate blog indexes
+        run: |
+          python scripts/generate_blog.py
+      # ★ ここまで追加
+
       - uses: actions/configure-pages@v4
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: "."
+
       - id: deployment
         uses: actions/deploy-pages@v4
