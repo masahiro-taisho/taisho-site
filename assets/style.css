@@ -502,3 +502,15 @@ body {
 .breadcrumb .sep { opacity: .6; }
 .breadcrumb a { text-decoration: none; }
 .breadcrumb a:hover { text-decoration: underline; }
+/* ===== Thumbnail unified ===== */
+
+.post-card img,
+.blog-card img,
+.home-thumb {
+
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+
+  border-radius: 12px;
+}
