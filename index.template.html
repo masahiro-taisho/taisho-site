@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ja">
+<head>
+
+<title>タイショーとは何者なのか</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="description" content="渋くて、ゆるい。好きなものの置き場。">
+
+<!-- OGP -->
+<meta property="og:title" content="タイショーとは何者なのか">
+<meta property="og:description" content="渋くて、ゆるい。好きなものの置き場。">
+<meta property="og:image" content="https://masahiro-taisho.github.io/taisho-site/assets/images/ogp/taisho-blog.jpg">
+<meta property="og:url" content="https://masahiro-taisho.github.io/taisho-site/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="タイショーとは何者なのか">
+
+<!-- Twitter(X) -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="タイショーとは何者なのか">
+<meta name="twitter:description" content="渋くて、ゆるい。好きなものの置き場。">
+<meta name="twitter:image" content="https://masahiro-taisho.github.io/taisho-site/assets/images/ogp/taisho-blog.jpg">
+
+</head>
+<body>
+<div id="site-header"></div>
+<script>
+fetch("/taisho-site/header.html")
+  .then(r => r.text())
+  .then(t => document.getElementById("site-header").innerHTML = t)
+  .catch(() => {});
+</script>
+
+
+<main class="container">
+<section class="home-hero">
+  <div class="home-hero-inner">
+    <p class="home-kicker">タイショーとは何者なのか</p>
+    <h1 class="home-title">渋くて、ゆるい。好きなものの置き場。</h1>
+    <p class="home-lead">映画、音楽、ガジェット、YouTube、ガンダム、AI。思いついたら書く。合わない人はそっと閉じてOK。</p>
+    <p class="home-cta"><a class="btn" href="/taisho-site/blog/index.html">ブログ一覧へ</a></p>
+  </div>
+</section>
+
+<section class="home-grid">
+  <div class="home-main">
+    <h2 class="section-title">最新記事</h2>
+
+<!-- LATEST:START -->
+<!-- LATEST:END -->
+
+  </div>
+
+<!-- CATEGORY:START -->
+<!-- CATEGORY:END -->
+
+</section>
+
+</main>
+
+<div id="site-footer"></div>
+<script>
+fetch("/taisho-site/footer.html")
+  .then(r => r.text())
+  .then(t => document.getElementById("site-footer").innerHTML = t)
+  .catch(() => {});
+</script>
+
+</body>
+</html>

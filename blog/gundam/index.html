@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ガンダム | タイショーとは何者なのか</title>
+<title>ガンダム | タイショーのブログ</title>
 <link rel="stylesheet" href="/taisho-site/assets/style.css">
 
 </head>
@@ -12,7 +12,7 @@
 <script>
 fetch("/taisho-site/header.html")
   .then(r => r.text())
-  .then(t => document.getElementById("site-header").innerHTML = t)
+  .then(html => document.getElementById("site-header").innerHTML = html)
   .catch(() => {});
 </script>
 
@@ -58,7 +58,7 @@ fetch("/taisho-site/header.html")
 <script>
 fetch("/taisho-site/footer.html")
   .then(r => r.text())
-  .then(t => document.getElementById("site-footer").innerHTML = t)
+  .then(html => document.getElementById("site-footer").innerHTML = html)
   .catch(() => {});
 </script>
 

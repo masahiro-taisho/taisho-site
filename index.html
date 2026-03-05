@@ -1,10 +1,27 @@
 <!doctype html>
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>トップ | タイショーとは何者なのか</title>
-<link rel="stylesheet" href="/taisho-site/assets/style.css">
+
+<title>タイショーとは何者なのか</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="description" content="渋くて、ゆるい。好きなものの置き場。">
+
+<!-- OGP -->
+<meta property="og:title" content="タイショーとは何者なのか">
+<meta property="og:description" content="渋くて、ゆるい。好きなものの置き場。">
+<meta property="og:image" content="https://masahiro-taisho.github.io/taisho-site/assets/images/ogp/taisho-blog.jpg">
+<meta property="og:url" content="https://masahiro-taisho.github.io/taisho-site/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="タイショーとは何者なのか">
+
+<!-- Twitter(X) -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="タイショーとは何者なのか">
+<meta name="twitter:description" content="渋くて、ゆるい。好きなものの置き場。">
+<meta name="twitter:image" content="https://masahiro-taisho.github.io/taisho-site/assets/images/ogp/taisho-blog.jpg">
 
 </head>
 <body>
@@ -30,7 +47,9 @@ fetch("/taisho-site/header.html")
 <section class="home-grid">
   <div class="home-main">
     <h2 class="section-title">最新記事</h2>
-    <article class="home-card">
+
+<!-- LATEST:START -->
+<article class="home-card">
   <a class="home-card-link" href="/taisho-site/blog/gadget/2026-03-05-macbook-neo.html">
     <img class="home-thumb" src="/taisho-site/assets/images/thumb/thumb-macbook-neo.jpg" alt="【Mac民になりたければ】MacBookNeoはアリかナシか？【M1ユーザーの結論】" decoding="async" fetchpriority="high">
     <div class="home-card-body">
@@ -60,10 +79,12 @@ fetch("/taisho-site/header.html")
     </div>
   </a>
 </article>
+<!-- LATEST:END -->
 
   </div>
 
-  <aside class="home-side">
+<!-- CATEGORY:START -->
+<aside class="home-side">
   <div class="side-box">
     <h2 class="side-title">カテゴリ</h2>
     <ul class="cat-list">
@@ -71,6 +92,8 @@ fetch("/taisho-site/header.html")
     </ul>
   </div>
 </aside>
+
+<!-- CATEGORY:END -->
 
 </section>
 
