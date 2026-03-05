@@ -29,6 +29,7 @@ CATEGORY_LABEL: Dict[str, str] = {
     "books": "小説／漫画",
     "music": "音楽",
     "software": "ソフト",
+    "gundam": "ガンダム",
 }
 
 # カテゴリの並び順（未定義カテゴリは後ろに回す）
