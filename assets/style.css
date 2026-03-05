@@ -483,3 +483,22 @@ body {
   height: 100%;
   border: 0;
 }
+/* ===== category/list header ===== */
+.list-header { margin: 28px 0 18px; }
+.kicker { opacity: .8; font-size: 13px; }
+.page-title { margin: 8px 0 6px; font-size: 28px; }
+.page-lead { opacity: .85; margin: 0 0 12px; }
+
+/* ===== breadcrumb ===== */
+.breadcrumb {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 13px;
+  opacity: .85;
+  margin-top: 10px;
+}
+.breadcrumb .sep { opacity: .6; }
+.breadcrumb a { text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
