@@ -31,6 +31,7 @@ CATEGORY_LABEL: Dict[str, str] = {
     "music": "音楽",
     "software": "ソフト",
     "gundam": "ガンダム",
+    "AI": "AI"
 }
 
 # ★カテゴリの並び順（ユーザー希望：ガジェット→YouTube→ガンダム→日記）
@@ -39,11 +40,12 @@ CATEGORY_ORDER: List[str] = [
     "gadget",
     "youtube",
     "gundam",
-    "diary",
     "movies",
     "music",
     "software",
     "books",
+    "AI"
+    "diary",
 ]
 
 # --- Template markers (B-2) ---
