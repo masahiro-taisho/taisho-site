@@ -745,3 +745,7 @@ width:100%;
 max-width:640px;
 border-radius:8px;
 }
+
+.post-body a img{
+max-width:640px;
+}
