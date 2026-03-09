@@ -726,3 +726,22 @@ margin-top:6px;
   content-visibility:auto;
   contain-intrinsic-size: 720px 405px; /* 16:9想定の仮サイズ */
 }
+/* =========================
+   YouTube thumbnail hover
+========================= */
+
+.post-body a img{
+transition: transform .18s ease, box-shadow .18s ease;
+border-radius:10px;
+}
+
+.post-body a:hover img{
+transform:scale(1.03);
+box-shadow:0 10px 24px rgba(0,0,0,.25);
+}
+
+.youtube-thumb{
+width:100%;
+max-width:640px;
+border-radius:8px;
+}
