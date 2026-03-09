@@ -1,0 +1,398 @@
+<!--
+title: 【画像生成①】Stable Diffusion A1111 WebUIをColabで動かす前の準備【Google Colab】
+date: 2026-03-08
+category: ai
+thumb: /taisho-site/assets/images/thumb/thumb-2026-03-08-stable-diffusion-colab-prep-01.jpg
+excerpt: Stable Diffusion A1111 WebUIをGoogle Colabで動かすための準備。fast-stable-diffusionのGitHub、Colabノートブック、Driveコピー、Colab契約までを解説。
+-->
+
+<!doctype html>
+<html lang="ja">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>
+【画像生成①】Stable Diffusion A1111 WebUIをColabで動かす前の準備【Google Colab】
+</title>
+
+<meta name="description"
+content="Stable Diffusion A1111 WebUIをGoogle Colabで動かすための準備。fast-stable-diffusionのGitHub、Colabノートブック、Driveコピー、Colab契約までを解説。">
+
+<link rel="stylesheet" href="/taisho-site/assets/style.css">
+
+</head>
+
+
+<body>
+
+
+<div id="site-header"></div>
+
+<script>
+fetch("/taisho-site/header.html")
+.then(r => r.text())
+.then(t => document.getElementById("site-header").innerHTML = t)
+.catch(()=>{});
+</script>
+
+
+
+<main class="container">
+
+<article class="post">
+
+
+
+<header class="post-header">
+
+<h1 class="post-title">
+【画像生成①】Stable Diffusion A1111 WebUIをColabで動かす前の準備
+</h1>
+
+<p class="post-meta">
+<time datetime="2026-03-08">2026.03.08</time>
+</p>
+
+</header>
+
+
+
+<figure class="post-figure">
+
+<img
+class="post-thumb"
+src="/taisho-site/assets/images/thumb/thumb-2026-03-08-stable-diffusion-colab-prep-01.jpg"
+loading="lazy">
+
+</figure>
+
+
+
+<div class="post-body">
+
+
+
+<p>
+Stable Diffusionを使えば、文章から画像を生成できる。
+</p>
+
+<p>
+リアルな人物、アニメ調のキャラクター、風景、イラストなど、
+AIが画像を生成してくれるツールだ。
+</p>
+
+<p>
+この記事では、Stable Diffusionの中でも
+<strong>A1111 WebUI</strong>を
+<strong>Google Colab</strong>で動かす方法をシリーズで解説していく。
+</p>
+
+<p>
+ただし今回は<strong>準備編</strong>。
+</p>
+
+<p>
+いきなり起動はせず、
+必要なページと準備を先に確認しておく。
+</p>
+
+
+
+<h2>この記事でやること</h2>
+
+<ul>
+
+<li>fast-stable-diffusion を確認する</li>
+
+<li>Colabノートブックを開く</li>
+
+<li>Google Driveにコピーする</li>
+
+<li>Google Colabとは何かを理解する</li>
+
+<li>Colabの料金プランを確認する</li>
+
+</ul>
+
+
+
+<h2>まず fast-stable-diffusion を確認する</h2>
+
+<p>
+Stable Diffusion A1111を
+Google Colabで簡単に動かすために、
+僕は
+<strong>fast-stable-diffusion</strong>
+を使っている。
+</p>
+
+<p>
+GitHubページはこちら。
+</p>
+
+<p>
+
+<a
+href="https://github.com/TheLastBen/fast-stable-diffusion"
+target="_blank">
+
+https://github.com/TheLastBen/fast-stable-diffusion
+
+</a>
+
+</p>
+
+
+
+<figure class="post-figure">
+
+<img
+src="/taisho-site/assets/images/blog/ai/2026-03-08-colab-01-fast-diffusion-github.jpg"
+loading="lazy">
+
+<figcaption>
+fast-stable-diffusion のGitHubページ
+</figcaption>
+
+</figure>
+
+
+
+<p>
+このページには
+Stable Diffusion用のColabノートブックが用意されている。
+</p>
+
+
+
+<h2>Colabノートブックを開く</h2>
+
+<p>
+初心者の場合は、
+GitHubから辿るよりも
+直接Colabノートブックを開いた方が分かりやすい。
+</p>
+
+<p>
+
+<a
+href="https://colab.research.google.com/github/TheLastBen/fast-stable-diffusion/blob/main/fast_stable_diffusion_AUTOMATIC1111.ipynb"
+target="_blank">
+
+Colabノートブックを開く
+
+</a>
+
+</p>
+
+
+
+<figure class="post-figure">
+
+<img
+src="/taisho-site/assets/images/blog/ai/2026-03-08-colab-02-open-notebook.jpg"
+loading="lazy">
+
+<figcaption>
+A1111 Colabノートブックを開いた画面
+</figcaption>
+
+</figure>
+
+
+
+<h2>Google Driveにコピーする</h2>
+
+<p>
+ノートブックは
+そのまま使うのではなく、
+<strong>自分のGoogle Driveにコピー</strong>
+しておく。
+</p>
+
+<p>
+
+<strong>
+ファイル → ドライブにコピーを保存
+</strong>
+
+</p>
+
+<p>
+これで自分専用のノートブックとして使える。
+</p>
+
+
+
+<figure class="post-figure">
+
+<img
+src="/taisho-site/assets/images/blog/ai/2026-03-08-colab-03-copy-drive.jpg"
+loading="lazy">
+
+<figcaption>
+Google Driveへコピー
+</figcaption>
+
+</figure>
+
+
+
+<h2>Google Colabとは？</h2>
+
+<p>
+ここで初めて登場するのが
+<strong>Google Colab</strong>。
+</p>
+
+<p>
+簡単に言うと
+<strong>GoogleのクラウドPC</strong>だ。
+</p>
+
+<p>
+Stable Diffusionのような
+重い処理を
+自分のパソコンではなく
+GoogleのGPUで実行できる。
+</p>
+
+<p>
+MacBookでもAI画像生成ができるのは
+この仕組みのおかげ。
+</p>
+
+
+
+<h2>Colab無料版は使える？</h2>
+
+<p>
+Google Colabには
+無料版もある。
+</p>
+
+<p>
+ただしStable Diffusion用途では
+</p>
+
+<ul>
+
+<li>GPUが割り当てられない</li>
+
+<li>途中で切断される</li>
+
+<li>安定しない</li>
+
+</ul>
+
+<p>
+などが起きやすい。
+</p>
+
+<p>
+そのため多くの人は
+<strong>Colab Pro</strong>
+または
+<strong>Colab Pro+</strong>
+を利用している。
+</p>
+
+
+
+<h2>Colab料金プラン</h2>
+
+
+
+<figure class="post-figure">
+
+<img
+src="/taisho-site/assets/images/blog/ai/2026-03-08-colab-04-plan.jpg"
+loading="lazy">
+
+<figcaption>
+Google Colabの料金プラン
+</figcaption>
+
+</figure>
+
+
+
+<p>
+僕自身は
+<strong>Colab Pro+</strong>
+を利用している。
+</p>
+
+<p>
+ただし
+有料プランの契約や支払いについては
+<strong>自己責任</strong>で判断してほしい。
+</p>
+
+
+
+<h2>今回はここまで</h2>
+
+<p>
+今回は準備編なのでここまで。
+</p>
+
+<p>
+Colabを起動すると
+GPUリソースを消費してしまうため、
+次回の記事で実際に起動する。
+</p>
+
+<p>
+
+<strong>
+次回は Stable Diffusion A1111 WebUI を
+実際に起動するところまで解説する。
+</strong>
+
+</p>
+
+
+
+</div>
+
+
+
+<nav class="post-nav">
+
+<a class="back" href="/taisho-site/blog/ai/index.html">
+
+← AIカテゴリへ戻る
+
+</a>
+
+</nav>
+
+
+
+</article>
+
+</main>
+
+
+
+<div id="site-footer"></div>
+
+<script>
+
+fetch("/taisho-site/footer.html")
+
+.then(r => r.text())
+
+.then(t => document.getElementById("site-footer").innerHTML = t)
+
+.catch(()=>{});
+
+</script>
+
+
+
+</body>
+</html>
